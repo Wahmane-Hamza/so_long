@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 14:22:37 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/04 15:06:32 by hwahmane         ###   ########.fr       */
+/*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/02/04 15:10:34 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+# ifndef    SO_LONG_H
+# define    SO_LONG_H
 
-int	main(void)
-{
-	void	*mlx;
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include "./minilibx-linux/mlx.h"
 
-	mlx = mlx_init();
-    if (!mlx)
-        return (1);
-    
-    return (0);
-}
+# endif
