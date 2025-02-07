@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/05 15:57:38 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:34:54 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,20 @@ typedef struct l_elem_data
     int P_posy;
 }   elem_data;
 
+typedef struct t_map_data
+{
+    char    **array;
+    int     map_x_len;
+    int     map_y_len;
+}   map_data;
+
 typedef struct s_mlx_data
 {
     void        *mlx;
 	void        *mlx_win;
     t_img       img;
     elem_data   elem;
+    map_data    map;
 }   mlx_data;
 
 

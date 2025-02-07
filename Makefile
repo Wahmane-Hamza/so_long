@@ -6,19 +6,23 @@ OBJS = $(SRCS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/include -g3
 LDFLAGS = -L/usr/local/lib -lmlx -lXext -lX11
+DEPS = so_long.h
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@make -C libft
+	$(CC) $(OBJS) -Llibft -lft $(LDFLAGS) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 clean:
+	@make clean -C libft
 	rm -f $(OBJS)
 
 fclean: clean
+	@make fclean -C libft
 	rm -f $(NAME)
 
 re: fclean all
