@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/07 16:34:54 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:39:47 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ typedef struct s_mlx_data
 
 int WIDTH = 0;
 int HEIGHT = 0;
+
+
+int	check_element_map();
 
 # endif
