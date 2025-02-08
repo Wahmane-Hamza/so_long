@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
+SRCS = so_long.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c command_help.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc

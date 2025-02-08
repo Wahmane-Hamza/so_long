@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/08 13:39:36 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:02:43 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,5 @@ int	check_element_map()
 	}
 	free(line);
 	close(fd);
-	WIDTH = len * 100;
 	return (1);
 }
