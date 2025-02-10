@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/09 18:56:10 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:36:41 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ typedef struct s_mlx_data
 int				check_all(char **av, t_mlx_data *data);
 int				flood_fill(t_mlx_data *data);
 void			free_map(char **map);
-int				error_exit(char *message, char *line, int fd, int is_exit);
+int				error_exit(char *message, char *line, int fd, char **array);
 char			**map_to_array(t_mlx_data *data, char **av);
+void			check_line_char(char *line, int fd);
+int				check_t_b_wall(char *line);
 
 #endif

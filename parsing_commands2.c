@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:39:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/09 18:53:49 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:37:58 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	*map_len(t_mlx_data *data)
+void	*map_len(t_mlx_data *data, char **av)
 {
 	int		fd;
 	char	*line;
 
-	fd = open("./maps/map.ber", O_RDONLY);
+	fd = open(av[1], O_RDONLY);
 	line = get_next_line(fd);
 	data->map.map_x_len = strlen(line) - 1;
 	data->map.map_y_len = 0;
@@ -55,6 +55,7 @@ void	*map_len(t_mlx_data *data)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (data);
 }
 
@@ -64,13 +65,13 @@ char	**map_to_array(t_mlx_data *data, char **av)
 	int		i;
 	char	*line;
 
-	data = map_len(data);
+	data = map_len(data, av);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		error_exit("open faild", NULL, -1, 1);
+		error_exit("Error: open faild", NULL, -1, NULL);
 	line = get_next_line(fd);
 	if (!line)
-		error_exit(NULL, NULL, -1, 0);
+		error_exit("Error: get next line faild", NULL, fd, NULL);
 	data->map.array = malloc((data->map.map_y_len + 1) * sizeof(char *));
 	i = 0;
 	while (i < data->map.map_y_len)
@@ -82,5 +83,22 @@ char	**map_to_array(t_mlx_data *data, char **av)
 		i++;
 	}
 	data->map.array[i] = NULL;
-	return (data->map.array);
+	if (check_t_b_wall(data->map.array[i - 1]) == 0)
+		error_exit("Error: The wall not all 1", line, fd, data->map.array);
+	return (close(fd), data->map.array);
+}
+
+void	check_line_char(char *line, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n')
+	{
+		if (line[i] == 'P' || line[i] == 'C' || line[i] == 'E' || line[i] == '1'
+			|| line[i] == '0')
+			i++;
+		else
+			error_exit("Error: Invalid char in the map", line, fd, NULL);
+	}
 }

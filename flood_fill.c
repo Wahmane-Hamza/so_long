@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:27:48 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/09 18:58:01 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:39:27 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	flood_fill(t_mlx_data *data)
 	if (find_c_e(cpy_array, 'C') == 0)
 	{
 		free_map(cpy_array);
+		free_map(data->map.array);
 		return (0);
 	}
 	free_map(cpy_array);
@@ -110,6 +111,7 @@ int	flood_fill(t_mlx_data *data)
 	if (find_c_e(cpy_array, 'E') == 0)
 	{
 		free_map(cpy_array);
+		free_map(data->map.array);
 		return (0);
 	}
 	free_map(cpy_array);

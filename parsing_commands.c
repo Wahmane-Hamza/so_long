@@ -6,23 +6,23 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/09 19:19:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:37:24 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	error_exit(char *message, char *line, int fd, int is_exit)
+int	error_exit(char *message, char *line, int fd, char **array)
 {
-	if (message)
-		write(2, message, strlen(message));
 	if (line)
 		free(line);
 	if (fd != -1)
 		close(fd);
-	if (is_exit == 1)
-		exit(1);
-	return (0);
+	if (array)
+		free_map(array);
+	if (message)
+		write(2, message, strlen(message));
+	exit(1);
 }
 
 int	check_t_b_wall(char *line)
@@ -57,11 +57,11 @@ int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
 	else if (add_check == 1)
 	{
 		if (data->elem.e != 1)
-			error_exit("error in E", line, fd, 1);
+			error_exit("error in E", line, fd, NULL);
 		if (data->elem.p != 1)
-			error_exit("error in P", line, fd, 1);
+			error_exit("error in P", line, fd, NULL);
 		if (data->elem.c == 0)
-			error_exit("error in C", line, fd, 1);
+			error_exit("error in C", line, fd, NULL);
 	}
 	return (add_check);
 }
@@ -72,16 +72,19 @@ void	*check_element_map(char *line, t_mlx_data *data, int fd, int len)
 
 	while (line)
 	{
+		if (line[0] == '\n' || line[0] == '\0')
+			error_exit("Error: empty line", line, fd, NULL);
+		check_line_char(line, fd);
 		i = 0;
+		if (line[i] == '\0' && line[i + 1] == '\n')
+			error_exit("Error: empty line", line, fd, NULL);
 		if (line[i] != '1')
-			error_exit("wall not 1", line, fd, 1);
+			error_exit("Error: The start not wall", line, fd, NULL);
 		i = check_caracters(line, data, i, -1);
 		if (line[i - 1] != '1')
-			error_exit("wall not 1", line, fd, 1);
+			error_exit("Error: The end not wall", line, fd, NULL);
 		if (len != i)
-			error_exit("len incorect", line, fd, 1);
-		if (line[i] == '\0' && check_t_b_wall(line) == 0)
-			error_exit("not all 1", line, fd, 1);
+			error_exit("Error: len incorect", line, fd, NULL);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -99,13 +102,16 @@ int	check_all(char **av, t_mlx_data *data)
 	data->elem.c = 0;
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		error_exit("open faild", NULL, -1, 1);
+		error_exit("Error: open faild", NULL, -1, NULL);
 	line = get_next_line(fd);
 	if (!line)
-		return (0);
+		error_exit("Error: get next line faild", NULL, fd, NULL);
+	if (line[0] == '\n')
+		error_exit("Error: empty line", line, fd, NULL);
+	check_line_char(line, fd);
 	len = check_t_b_wall(line);
 	if (len == 0)
-		error_exit("not all 1", line, fd, 1);
+		error_exit("Error: The wall not all 1", line, fd, NULL);
 	line = check_element_map(line, data, fd, len);
 	check_caracters(line, data, 1, fd);
 	free(line);
