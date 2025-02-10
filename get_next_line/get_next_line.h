@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:14:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 16:39:38 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:04:01 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(char *str);
-int		ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlen2(char *str);
+int		ft_strchr2(const char *s, int c);
+char	*ft_strjoin2(char *s1, char *s2);
 int		before_n_stack(char *stack);
 int		after_n_stack(char *stack, int i);
-char	*ft_strdup(char *s1);
+char	*ft_strdup2(char *s1);
 
 #endif

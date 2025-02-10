@@ -6,13 +6,13 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:14:53 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/05 09:22:31 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:04:47 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen2(char *str)
 {
 	size_t	i;
 
@@ -84,7 +84,7 @@ char	*get_n(char *stack, int fd)
 	buffer = malloc((size_t)BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	while (ft_strchr(stack, '\n') != 1)
+	while (ft_strchr2(stack, '\n') != 1)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
@@ -95,7 +95,7 @@ char	*get_n(char *stack, int fd)
 		}
 		buffer[i] = '\0';
 		temp = stack;
-		stack = ft_strjoin(stack, buffer);
+		stack = ft_strjoin2(stack, buffer);
 		free(temp);
 		if (!stack)
 			return (free(buffer), free(stack), NULL);

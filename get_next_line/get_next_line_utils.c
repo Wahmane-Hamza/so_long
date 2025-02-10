@@ -6,13 +6,13 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 16:15:00 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/05 09:22:36 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:05:07 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *s, int c)
+int	ft_strchr2(const char *s, int c)
 {
 	int	i;
 
@@ -28,12 +28,12 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup2(char *s1)
 {
 	char	*dst;
 	size_t	i;
 
-	dst = (char *)malloc(ft_strlen(s1) + 1);
+	dst = (char *)malloc(ft_strlen2(s1) + 1);
 	if (!dst)
 		return (NULL);
 	i = 0;
@@ -46,19 +46,19 @@ char	*ft_strdup(char *s1)
 	return (dst);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin2(char *s1, char *s2)
 {
 	char	*dst;
 	size_t	i;
 	size_t	size;
 
 	if (s1 && !s2)
-		return (ft_strdup(s1));
+		return (ft_strdup2(s1));
 	if (!s1 && s2)
-		return (ft_strdup(s2));
+		return (ft_strdup2(s2));
 	if (!s1 && !s2)
-		return (ft_strdup(""));
-	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+		return (ft_strdup2(""));
+	size = ft_strlen2(s1) + ft_strlen2(s2) + 1;
 	dst = malloc(size);
 	if (!dst)
 		return (NULL);

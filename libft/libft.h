@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:52:30 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/01/27 12:54:46 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:57:08 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
-char	*copy_str(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

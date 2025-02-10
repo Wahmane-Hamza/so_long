@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_help.c                                     :+:      :+:    :+:   */
+/*   parsing_commands.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 18:37:24 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:52:41 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	check_all(char **av, t_mlx_data *data)
 	data->elem.p = 0;
 	data->elem.e = 0;
 	data->elem.c = 0;
+	check_map_extention(av);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		error_exit("Error: open faild", NULL, -1, NULL);

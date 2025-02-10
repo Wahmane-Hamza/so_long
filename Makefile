@@ -1,7 +1,7 @@
 NAME = so_long
 
 SRCS = so_long.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c parsing_commands.c \
-		flood_fill.c parsing_commands2.c
+		flood_fill.c parsing_commands2.c parsing_commands3.c
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc

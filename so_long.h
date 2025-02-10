@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 18:36:41 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:58:44 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "./get_next_line/get_next_line.h"
+# include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -66,5 +67,6 @@ int				error_exit(char *message, char *line, int fd, char **array);
 char			**map_to_array(t_mlx_data *data, char **av);
 void			check_line_char(char *line, int fd);
 int				check_t_b_wall(char *line);
+void			check_map_extention(char **av);
 
 #endif
