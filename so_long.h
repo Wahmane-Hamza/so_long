@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 19:58:44 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/11 21:56:16 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@
 typedef struct s_img
 {
 	void		*img_ptr;
-	char		*img_pixels_ptr;
+	char		*addr;
 	int			bits_per_pixels;
 	int			endian;
 	int			line_len;
-	int			pixel;
-	int			step_right_left;
-	int			step_top_bottum;
+	int			color;
 }				t_img;
 
 typedef struct l_elem_data
@@ -49,6 +47,11 @@ typedef struct t_map_data
 	char		**array;
 	int			map_x_len;
 	int			map_y_len;
+	char		*map_space;
+	char		*map_wall;
+	char		*map_player;
+	char		*map_collectible;
+	char		*map_exit;
 }				t_map_data;
 
 typedef struct s_mlx_data
