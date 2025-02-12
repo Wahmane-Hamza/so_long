@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_help2.c                                    :+:      :+:    :+:   */
+/*   parsing_commands2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:39:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 18:37:58 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:58:16 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	find_p_pos(char *line, t_mlx_data *data, int i)
+void	find_p_pos(t_mlx_data *data)
 {
+	int	i;
 	int	j;
 
-	j = 0;
-	while (line[j++])
+	i = 0;
+	while (data->map.array[i])
 	{
-		if (line[j] == 'P')
+		j = 0;
+		while (data->map.array[i][j])
 		{
-			data->elem.p_posx = j;
-			data->elem.p_posy = i;
+			if (data->map.array[i][j] == 'P')
+			{
+				data->elem.p_posx = j;
+				data->elem.p_posy = i;
+			}
+			j++;
 		}
+		i++;
 	}
 }
 
@@ -77,7 +84,6 @@ char	**map_to_array(t_mlx_data *data, char **av)
 	while (i < data->map.map_y_len)
 	{
 		data->map.array[i] = ft_strdup(line);
-		find_p_pos(line, data, i);
 		free(line);
 		line = get_next_line(fd);
 		i++;

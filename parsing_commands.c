@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 19:52:41 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:07:31 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
 	else if (add_check == 1)
 	{
 		if (data->elem.e != 1)
-			error_exit("error in E", line, fd, NULL);
+			error_exit("Error: The map must contain a Exit(E)", line, fd, NULL);
 		if (data->elem.p != 1)
-			error_exit("error in P", line, fd, NULL);
+			error_exit("Error: The map must contain a player(P)", line, fd, NULL);
 		if (data->elem.c == 0)
-			error_exit("error in C", line, fd, NULL);
+			error_exit("Error: The map must contain a Coin(C)", line, fd, NULL);
 	}
 	return (add_check);
 }
@@ -84,7 +84,7 @@ void	*check_element_map(char *line, t_mlx_data *data, int fd, int len)
 		if (line[i - 1] != '1')
 			error_exit("Error: The end not wall", line, fd, NULL);
 		if (len != i)
-			error_exit("Error: len incorect", line, fd, NULL);
+			error_exit("Error: Len incorect", line, fd, NULL);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -106,9 +106,9 @@ int	check_all(char **av, t_mlx_data *data)
 		error_exit("Error: open faild", NULL, -1, NULL);
 	line = get_next_line(fd);
 	if (!line)
-		error_exit("Error: get next line faild", NULL, fd, NULL);
+		error_exit("Error: Empty map", NULL, fd, NULL);
 	if (line[0] == '\n')
-		error_exit("Error: empty line", line, fd, NULL);
+		error_exit("Error: Empty line", line, fd, NULL);
 	check_line_char(line, fd);
 	len = check_t_b_wall(line);
 	if (len == 0)

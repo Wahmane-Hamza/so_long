@@ -6,21 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:27:48 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 17:39:27 by hwahmane         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "so_long.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: oumondad <oumondad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 17:55:05 by oumondad          #+#    #+#             */
-/*   Updated: 2024/02/21 16:11:40 by oumondad         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:55:40 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +83,7 @@ int	flood_fill(t_mlx_data *data)
 {
 	char	**cpy_array;
 
+	find_p_pos(data);
 	cpy_array = map_duplicate(data);
 	flood_fill_player(data->elem.p_posx, data->elem.p_posy, cpy_array);
 	if (find_c_e(cpy_array, 'C') == 0)

@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:22:37 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/11 15:18:14 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:06:12 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,59 +128,59 @@
 // }
 
 
-int main(int ac , char **av)
-{
-	int			x;
-	int			y;
-	int			pixel_pos;
-	t_mlx_data	data;
+// int main(int ac , char **av)
+// {
+// 	int			x;
+// 	int			y;
+// 	int			pixel_pos;
+// 	t_mlx_data	data;
 
-	if (ac == 2)
-	{
-		if (check_all(av, &data) == 0)
-			return (0);
-		data.map.array = map_to_array(&data, av);
-		if (flood_fill(&data) == 0)
-			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
+// 	if (ac == 2)
+// 	{
+// 		if (check_all(av, &data) == 0)
+// 			return (0);
+// 		data.map.array = map_to_array(&data, av);
+// 		if (flood_fill(&data) == 0)
+// 			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
 
-		data.mlx = mlx_init();
-		if (data.mlx == NULL)
-			return (1);
+// 		data.mlx = mlx_init();
+// 		if (data.mlx == NULL)
+// 			return (1);
 
-		data.mlx_win = mlx_new_window(data.mlx,data.map.map_x_len * 80,data.map.map_y_len  * 80, "So Long");
-		if (data.mlx_win == NULL)
-		{
-			mlx_destroy_display(data.mlx);
-			free(data.mlx);
-			return (1);
-		}
-		data.img.img_ptr = mlx_new_image(data.mlx,data.map.map_x_len,data.map.map_y_len);
-		data.img.img_pixels_ptr = mlx_get_data_addr(data.img.img_ptr,
-				&data.img.bits_per_pixels,&data.img.line_len, &data.img.endian);
-		y = 0;
-		while (y < data.map.map_y_len)
-		{
-			x = 0;
-			while (x < data.map.map_x_len)
-			{
-				pixel_pos = y*data.img.line_len + x *(data.img.bits_per_pixels / 8);
-				*((unsigned int *)(data.img.img_pixels_ptr + pixel_pos)) = 0xFF00FF;
-				x++;
-			}
-			y++;
-		}
+// 		data.mlx_win = mlx_new_window(data.mlx,data.map.map_x_len * 80,data.map.map_y_len  * 80, "So Long");
+// 		if (data.mlx_win == NULL)
+// 		{
+// 			mlx_destroy_display(data.mlx);
+// 			free(data.mlx);
+// 			return (1);
+// 		}
+// 		data.img.img_ptr = mlx_new_image(data.mlx,data.map.map_x_len,data.map.map_y_len);
+// 		data.img.img_pixels_ptr = mlx_get_data_addr(data.img.img_ptr,
+// 				&data.img.bits_per_pixels,&data.img.line_len, &data.img.endian);
+// 		y = 0;
+// 		while (y < data.map.map_y_len)
+// 		{
+// 			x = 0;
+// 			while (x < data.map.map_x_len)
+// 			{
+// 				pixel_pos = y*data.img.line_len + x *(data.img.bits_per_pixels / 8);
+// 				*((unsigned int *)(data.img.img_pixels_ptr + pixel_pos)) = 0xFF00FF;
+// 				x++;
+// 			}
+// 			y++;
+// 		}
 		// mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
 		// data.img.step_right_left = 0;
 		// data.img.step_top_bottum = 0;
 		// draw_map(data, 0 , 0);
 		// mlx_key_hook(data.mlx_win, handle_input, &data);
-		mlx_loop(data.mlx);
-		mlx_destroy_window(data.mlx, data.mlx_win);
-		mlx_destroy_display(data.mlx);
-		free(data.mlx);
-		free_map(data.map.array);
-		return (0);
-	}
-	else
-		error_exit("Bad argement:./so_long map\n", NULL, -1, NULL);
-}
+// 		mlx_loop(data.mlx);
+// 		mlx_destroy_window(data.mlx, data.mlx_win);
+// 		mlx_destroy_display(data.mlx);
+// 		free(data.mlx);
+// 		free_map(data.map.array);
+// 		return (0);
+// 	}
+// 	else
+// 		error_exit("Bad argement:./so_long map\n", NULL, -1, NULL);
+// }

@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/11 21:56:16 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:17:17 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,29 @@
 # include <string.h>
 # include <unistd.h>
 
+# define KEY_ESC 65307
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
+# define KEY_W 119
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_A 97
+# define ESC 65307
+
+
 typedef struct s_img
 {
-	void		*img_ptr;
-	char		*addr;
-	int			bits_per_pixels;
-	int			endian;
-	int			line_len;
-	int			color;
+	void	*img;
+	int		img_width;
+	int		img_height;
+	char	*map_ground;
+	char	*map_wall;
+	char	*map_player;
+	char	*map_coin;
+	char	*house_open;
+	char	*house_close;
 }				t_img;
 
 typedef struct l_elem_data
@@ -38,6 +53,7 @@ typedef struct l_elem_data
 	int			p;
 	int			e;
 	int			c;
+	int			house_open;
 	int			p_posx;
 	int			p_posy;
 }				t_elem_data;
@@ -47,11 +63,6 @@ typedef struct t_map_data
 	char		**array;
 	int			map_x_len;
 	int			map_y_len;
-	char		*map_space;
-	char		*map_wall;
-	char		*map_player;
-	char		*map_collectible;
-	char		*map_exit;
 }				t_map_data;
 
 typedef struct s_mlx_data
@@ -63,6 +74,7 @@ typedef struct s_mlx_data
 	t_map_data	map;
 }				t_mlx_data;
 
+// Parsing
 int				check_all(char **av, t_mlx_data *data);
 int				flood_fill(t_mlx_data *data);
 void			free_map(char **map);
@@ -71,5 +83,13 @@ char			**map_to_array(t_mlx_data *data, char **av);
 void			check_line_char(char *line, int fd);
 int				check_t_b_wall(char *line);
 void			check_map_extention(char **av);
+void			find_p_pos(t_mlx_data *data);
+
+// Mandatory commands
+int 			draw_map(t_mlx_data *data);
+int 			key_hook(int keysym,t_mlx_data *data);
+void			draw_characters(t_mlx_data *data, int i);
+void			image_link(t_mlx_data *data);
+void			free_destroy(t_mlx_data *data, int is_errer, char *message);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/11 22:07:41 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:02:26 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,29 @@
 //         i++;
 //     }
 //     mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
-        
+
 //     mlx_mouse_hook(data.mlx_win, mouse_hook, &data);
 //     mlx_loop(data.mlx);
 // }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*relative_path = "images/gound_wall/ground.xpm";
-	int		img_width;
-	int		img_height;
-    int i;
-    int j;
+	t_mlx_data	data;
 
-	mlx = mlx_init();
-    win = mlx_new_window(mlx, 800, 800, "so_long");
-
-    img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-
-    printf("%-d--%d\n",img_height, img_width);
-    i = 0;
-	while (i < 800 / img_height)
+	if (ac == 2)
 	{
-		j = 0;
-		while (j < 800 / img_width)
-		{
-			mlx_put_image_to_window(mlx, win, img, j * img_width, i * img_height);
-			j++;
-		}
-		i++;
+		if (check_all(av, &data) == 0)
+			return (0);
+		data.map.array = map_to_array(&data, av);
+		if (flood_fill(&data) == 0)
+			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
+
+		data.mlx = mlx_init();
+		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80, data.map.map_y_len * 80, "so_long");
+		image_link(&data);
+		draw_map(&data);
+		mlx_key_hook(data.mlx_win, key_hook, &data);
+		mlx_loop(data.mlx);
 	}
 
-    mlx_loop(mlx);
 }
