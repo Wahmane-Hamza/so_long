@@ -12,21 +12,22 @@
 
 #include "so_long.h"
 
-void    open_door(t_mlx_data *data, int num, char x_y)
+void	open_door(t_mlx_data *data, int num, char x_y)
 {
-    if (x_y == 'y')
-    {
-        if (data->map.array[num][data->elem.p_posx] == 'E'
-                && data->elem.house_open == 1)
+	if (x_y == 'y')
+	{
+		if (data->map.array[num][data->elem.p_posx] == 'E'
+			&& data->elem.house_open == 1)
 			free_destroy(data, 1, NULL);
-    }
-    else if(x_y == 'x')
-    {
-        if (data->map.array[data->elem.p_posy][num] == 'E'
-                && data->elem.house_open == 1)
+	}
+	else if (x_y == 'x')
+	{
+		if (data->map.array[data->elem.p_posy][num] == 'E'
+			&& data->elem.house_open == 1)
 			free_destroy(data, 1, NULL);
-    }
+	}
 }
+
 void	move_player(t_mlx_data *data, char x_y, int num)
 {
 	if (x_y == 'y')
@@ -37,7 +38,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
 			data->map.array[num][data->elem.p_posx] = 'P';
 		}
-        open_door(data, num, x_y);
+		open_door(data, num, x_y);
 	}
 	else if (x_y == 'x')
 	{
@@ -50,6 +51,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		open_door(data, num, x_y);
 	}
 }
+
 int	key_hook(int keysym, t_mlx_data *data)
 {
 	if (keysym == KEY_W || keysym == KEY_UP)
@@ -70,20 +72,20 @@ int	key_hook(int keysym, t_mlx_data *data)
 	return (1);
 }
 
-void	free_destroy(t_mlx_data *data, int is_errer, char *message)
+void	free_destroy(t_mlx_data *data, int is_error, char *message)
 {
 	if (data->img.map_ground)
-        mlx_destroy_image(data->mlx, data->img.map_ground);
-    if (data->img.map_player)
-        mlx_destroy_image(data->mlx, data->img.map_player);
-    if (data->img.house_close)
-        mlx_destroy_image(data->mlx, data->img.house_close);
-    if (data->img.house_open)
-        mlx_destroy_image(data->mlx, data->img.house_open);
-    if (data->img.map_wall)
-        mlx_destroy_image(data->mlx, data->img.map_wall);
-    if (data->img.map_coin)
-        mlx_destroy_image(data->mlx, data->img.map_coin);
+		mlx_destroy_image(data->mlx, data->img.map_ground);
+	if (data->img.map_player)
+		mlx_destroy_image(data->mlx, data->img.map_player);
+	if (data->img.house_open)
+		mlx_destroy_image(data->mlx, data->img.house_open);
+	if (data->img.house_close)
+		mlx_destroy_image(data->mlx, data->img.house_close);
+	if (data->img.map_wall)
+		mlx_destroy_image(data->mlx, data->img.map_wall);
+	if (data->img.map_coin)
+		mlx_destroy_image(data->mlx, data->img.map_coin);
 	if (data->map.array)
 		free_map(data->map.array);
 	if (data->mlx_win)
@@ -93,6 +95,6 @@ void	free_destroy(t_mlx_data *data, int is_errer, char *message)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	if (is_errer == 1)
-		error_exit(message,NULL, -1, NULL);
+	if (is_error == 1)
+		error_exit(message, NULL, -1, NULL);
 }

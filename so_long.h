@@ -34,18 +34,17 @@
 # define KEY_A 97
 # define ESC 65307
 
-
 typedef struct s_img
 {
-	void	*img;
-	int		img_width;
-	int		img_height;
-	char	*map_ground;
-	char	*map_wall;
-	char	*map_player;
-	char	*map_coin;
-	char	*house_open;
-	char	*house_close;
+	void		*img;
+	int			img_width;
+	int			img_height;
+	char		*map_ground;
+	char		*map_wall;
+	char		*map_player;
+	char		*map_coin;
+	char		*house_open;
+	char		*house_close;
 }				t_img;
 
 typedef struct l_elem_data
@@ -86,10 +85,10 @@ void			check_map_extention(char **av);
 void			find_p_pos(t_mlx_data *data);
 
 // Mandatory commands
-int 			draw_map(t_mlx_data *data);
-int 			key_hook(int keysym,t_mlx_data *data);
+int				draw_map(t_mlx_data *data);
+int				key_hook(int keysym, t_mlx_data *data);
 void			draw_characters(t_mlx_data *data, int i);
 void			image_link(t_mlx_data *data);
-void			free_destroy(t_mlx_data *data, int is_errer, char *message);
+void			free_destroy(t_mlx_data *data, int is_error, char *message);
 
 #endif

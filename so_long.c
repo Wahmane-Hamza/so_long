@@ -23,9 +23,9 @@ int	main(int ac, char **av)
 		data.map.array = map_to_array(&data, av);
 		if (flood_fill(&data) == 0)
 			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
-
 		data.mlx = mlx_init();
-		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80, data.map.map_y_len * 80, "so_long");
+		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80,
+				data.map.map_y_len * 80, "so_long");
 		image_link(&data);
 		draw_map(&data);
 		mlx_key_hook(data.mlx_win, key_hook, &data);

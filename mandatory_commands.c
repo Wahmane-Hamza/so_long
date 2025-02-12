@@ -31,27 +31,35 @@ int	check_coins(t_mlx_data *data)
 	}
 	return (1);
 }
+
 void	image_link(t_mlx_data *data)
 {
 	data->img.map_ground = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/ground.xpm", &data->img.img_width,
+			"./images/mandatory/ground.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 	data->img.map_player = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/player.xpm", &data->img.img_width,
+			"./images/mandatory/player.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 	data->img.house_close = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/house_close.xpm", &data->img.img_width,
+			"./images/mandatory/house_close.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 	data->img.house_open = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/house_open.xpm", &data->img.img_width,
+			"./images/mandatory/house_open.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 	data->img.map_wall = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/wall.xpm", &data->img.img_width,
+			"./images/mandatory/wall.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 	data->img.map_coin = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/coin.xpm", &data->img.img_width,
+			"./images/mandatory/coin.xpm",
+			&data->img.img_width,
 			&data->img.img_height);
 }
+
 void	draw_characters(t_mlx_data *data, int i)
 {
 	int	j;
@@ -65,31 +73,30 @@ void	draw_characters(t_mlx_data *data, int i)
 				data->img.img = data->img.map_wall;
 			else if (data->map.array[i][j] == 'C')
 				data->img.img = data->img.map_coin;
-			else if (data->map.array[i][j] == 'E')
+			else if (data->map.array[i][j] == 'E' && data->elem.house_open != 1)
 				data->img.img = data->img.house_close;
+			else if (data->map.array[i][j] == 'E' && data->elem.house_open == 1)
+				data->img.img = data->img.house_open;
 			else if (data->map.array[i][j] == 'P')
 				data->img.img = data->img.map_player;
 			else
 				data->img.img = data->img.map_ground;
-			if(mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-					j * data->img.img_width, i * data->img.img_height) == -1)
-				free_destroy(data, 1, "ERROR: Put image faild");
+			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
+				j * data->img.img_width, i * data->img.img_height) == -1
 			j++;
 		}
 		i++;
 	}
 }
+
 int	draw_map(t_mlx_data *data)
 {
-    int i;
+	int	i;
 
-    i = 0;
+	i = 0;
 	data->elem.house_open = 0;
-    if (check_coins(data) == 1)
-	{
-		data->img.house_close = data->img.house_open;
+	if (check_coins(data) == 1)
 		data->elem.house_open = 1;
-	}
 	draw_characters(data, i);
 	return (1);
 }
