@@ -82,7 +82,7 @@ void	draw_characters(t_mlx_data *data, int i)
 			else
 				data->img.img = data->img.map_ground;
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-				j * data->img.img_width, i * data->img.img_height) == -1
+				j * data->img.img_width, i * data->img.img_height);
 			j++;
 		}
 		i++;
