@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:52:30 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/10 19:57:08 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:54:22 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

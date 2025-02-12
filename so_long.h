@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 14:17:17 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:45:58 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct l_elem_data
 	int			house_open;
 	int			p_posx;
 	int			p_posy;
+	int			num_move;
 }				t_elem_data;
 
 typedef struct t_map_data

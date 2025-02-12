@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 16:47:52 by hwahmane         ###   ########.fr       */
+/*   Created: 2025/02/12 16:38:36 by hwahmane          #+#    #+#             */
+/*   Updated: 2025/02/12 16:38:43 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int ac, char **av)
 				data.map.map_y_len * 80, "so_long");
 		image_link(&data);
 		draw_map(&data);
-		data.elem.num_move = 0;
 		mlx_key_hook(data.mlx_win, key_hook, &data);
 		mlx_loop(data.mlx);
 		free_map(data.map.array);

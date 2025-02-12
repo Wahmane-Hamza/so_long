@@ -6,11 +6,19 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 14:31:07 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:04:49 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	print_movements(t_mlx_data *data)
+{
+	data->elem.num_move++;
+	write(1, "Number of movements: ", 21);
+	ft_putnbr_fd(data->elem.num_move, 1);
+	write(1, "\n", 1);
+}
 
 void	open_door(t_mlx_data *data, int num, char x_y)
 {
@@ -18,13 +26,19 @@ void	open_door(t_mlx_data *data, int num, char x_y)
 	{
 		if (data->map.array[num][data->elem.p_posx] == 'E'
 			&& data->elem.house_open == 1)
+		{
+			write(1, "Congratulations! You won!", 25);
 			free_destroy(data, 1, NULL);
+		}
 	}
 	else if (x_y == 'x')
 	{
 		if (data->map.array[data->elem.p_posy][num] == 'E'
 			&& data->elem.house_open == 1)
+		{
+			write(1, "Congratulations! You won!", 25);
 			free_destroy(data, 1, NULL);
+		}
 	}
 }
 
@@ -37,6 +51,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		{
 			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
 			data->map.array[num][data->elem.p_posx] = 'P';
+			print_movements(data);
 		}
 		open_door(data, num, x_y);
 	}
@@ -47,6 +62,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		{
 			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
 			data->map.array[data->elem.p_posy][num] = 'P';
+			print_movements(data);
 		}
 		open_door(data, num, x_y);
 	}
