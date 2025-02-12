@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 17:59:02 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:52:28 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
@@ -33,7 +33,6 @@
 # define KEY_S 115
 # define KEY_A 97
 # define ESC 65307
-# define ON_DESTROY 17
 
 typedef struct s_img
 {
@@ -42,7 +41,11 @@ typedef struct s_img
 	int			img_height;
 	char		*map_ground;
 	char		*map_wall;
-	char		*map_player;
+	char		**map_player_front;
+	char		**map_player_front_path;
+	char		**map_player_back;
+	char		**map_player_left;
+	char		**map_player_right;
 	char		*map_coin;
 	char		*house_open;
 	char		*house_close;
@@ -92,6 +95,5 @@ int				key_hook(int keysym, t_mlx_data *data);
 void			draw_characters(t_mlx_data *data, int i);
 void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
-int				close_window(t_mlx_data *data);
 
 #endif

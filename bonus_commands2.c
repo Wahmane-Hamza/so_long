@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandatory_commands2.c                              :+:      :+:    :+:   */
+/*   bonus_commands2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 17:59:33 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:22:26 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	print_movements(t_mlx_data *data)
 {
@@ -78,7 +78,7 @@ int	key_hook(int keysym, t_mlx_data *data)
 		move_player(data, 'x', data->elem.p_posx + 1);
 	else if (keysym == KEY_A || keysym == KEY_LEFT)
 		move_player(data, 'x', data->elem.p_posx - 1);
-	else if (keysym == ESC || keysym == ON_DESTROY)
+	else if (keysym == ESC)
 		free_destroy(data);
 	else
 		return (0);
@@ -92,8 +92,8 @@ void	free_destroy(t_mlx_data *data)
 {
 	if (data->img.map_ground)
 		mlx_destroy_image(data->mlx, data->img.map_ground);
-	if (data->img.map_player)
-		mlx_destroy_image(data->mlx, data->img.map_player);
+	// if (data->img.map_player)
+	// 	mlx_destroy_image(data->mlx, data->img.map_player);
 	if (data->img.house_open)
 		mlx_destroy_image(data->mlx, data->img.house_open);
 	if (data->img.house_close)
@@ -111,5 +111,4 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	exit (1);
 }

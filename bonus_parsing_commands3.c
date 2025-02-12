@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_commands3.c                                :+:      :+:    :+:   */
+/*   bonus_parsing_commands3.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 18:08:53 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:22:24 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_map_extention(char **av)
 {
 	int	i;
-	int	len;
 
 	i = 0;
 	while (av[1][i])
@@ -28,8 +27,4 @@ void	check_map_extention(char **av)
 		}
 		i++;
 	}
-	len = ft_strlen(av[1]);
-	i = len - 5;
-	if (av[1][i] == '/')
-		error_exit("you need name before (.ber)", NULL, -1, NULL);
 }
