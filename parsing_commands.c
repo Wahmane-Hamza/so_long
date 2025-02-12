@@ -59,7 +59,7 @@ int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
 		if (data->elem.e != 1)
 			error_exit("Error: The map must contain a Exit(E)", line, fd, NULL);
 		if (data->elem.p != 1)
-			error_exit("Error: The map must contain a player(P)", line, fd, NULL);
+			error_exit("Error:The map must contain Player(P)", line, fd, NULL);
 		if (data->elem.c == 0)
 			error_exit("Error: The map must contain a Coin(C)", line, fd, NULL);
 	}
