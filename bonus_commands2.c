@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 18:22:26 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:03:27 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	free_destroy(t_mlx_data *data)
 {
 	if (data->img.map_ground)
 		mlx_destroy_image(data->mlx, data->img.map_ground);
-	// if (data->img.map_player)
-	// 	mlx_destroy_image(data->mlx, data->img.map_player);
+	if (data->img.map_player_front)
+		mlx_destroy_image(data->mlx, data->img.map_player_front);
 	if (data->img.house_open)
 		mlx_destroy_image(data->mlx, data->img.house_open);
 	if (data->img.house_close)
