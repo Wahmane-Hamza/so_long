@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:03:30 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:09:14 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:11:52 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ char	*ft_strdup(const char *s1)
 	ptr = malloc(len + 1);
 	if (!ptr)
 		return (NULL);
-	ft_strlcpy(ptr, s1, len + 2);
+	ft_strlcpy(ptr, s1, len + 1);
 	return (ptr);
 }

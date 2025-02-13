@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:00:45 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:41:22 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@
 # define KEY_A 97
 # define ESC 65307
 
-typedef	struct s_img_links
+typedef	struct s_img_sides
 {
-	char	**stop_front;
-
-}				s_img_links;
+	int	front;
+	int	right;
+}				s_img_side;
 
 typedef struct s_img
 {
@@ -54,7 +54,7 @@ typedef struct s_img
 	char		*map_coin;
 	char		*house_open;
 	char		*house_close;
-	s_img_links	links;
+	s_img_side	side;
 }				t_img;
 
 typedef struct l_elem_data
@@ -103,6 +103,6 @@ void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
 
 // Animation
-void    stop_animation(t_mlx_data *data, int i);
+void    		stop_animation(t_mlx_data *data, int i, char *link);
 
 #endif

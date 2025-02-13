@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:03:27 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:42:16 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,32 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 
 int	key_hook(int keysym, t_mlx_data *data)
 {
+	data->img.side.front = 1;
+	data->img.side.right = 0;
 	if (keysym == KEY_W || keysym == KEY_UP)
+	{
+		data->img.side.front = 2;
+		data->img.side.right = 0;
 		move_player(data, 'y', data->elem.p_posy - 1);
+	}
 	else if (keysym == KEY_S || keysym == KEY_DOWN)
+	{
+		data->img.side.front = 1;
+		data->img.side.right = 0;
 		move_player(data, 'y', data->elem.p_posy + 1);
+	}
 	else if (keysym == KEY_D || keysym == KEY_RIGHT)
+	{
+		data->img.side.front = 0;
+		data->img.side.right = 1;
 		move_player(data, 'x', data->elem.p_posx + 1);
+	}
 	else if (keysym == KEY_A || keysym == KEY_LEFT)
+	{
+		data->img.side.front = 0;
+		data->img.side.right = 2;
 		move_player(data, 'x', data->elem.p_posx - 1);
+	}
 	else if (keysym == ESC)
 		free_destroy(data);
 	else
@@ -111,4 +129,5 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
+	exit (1);
 }

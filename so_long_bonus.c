@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:01:19 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:43:51 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ int	animation(t_mlx_data *data)
 
 	if (i > 5)
 		i = 0;
-	stop_animation(data, i);
+	if (data->img.side.front == 1)
+		stop_animation(data, i, "./images/bonus/stop/stop_front/");
+	else if (data->img.side.front == 2)
+		stop_animation(data, i, "./images/bonus/stop/stop_back/");
+	else if (data->img.side.right == 1)
+		stop_animation(data, i, "./images/bonus/stop/stop_right/");
+	else if (data->img.side.right == 2)
+		stop_animation(data, i, "./images/bonus/stop/stop_left/");
 	i++;
 	usleep(85000);
 	draw_map(data);
