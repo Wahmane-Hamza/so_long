@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 16:21:33 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:39:22 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,9 @@ int	draw_map(t_mlx_data *data)
 		data->elem.house_open = 1;
 	draw_characters(data, i);
 	return (1);
+}
+int	close_window(t_mlx_data *data)
+{
+	free_destroy(data);
+	return (0);
 }

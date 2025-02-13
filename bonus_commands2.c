@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:42:16 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:37:28 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	key_hook(int keysym, t_mlx_data *data)
 		data->img.side.right = 2;
 		move_player(data, 'x', data->elem.p_posx - 1);
 	}
-	else if (keysym == ESC)
+	else if (keysym == ESC || keysym == ON_DESTROY)
 		free_destroy(data);
 	else
 		return (0);
