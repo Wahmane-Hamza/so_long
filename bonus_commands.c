@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:48:21 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:21:33 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	image_link(t_mlx_data *data)
 			&data->img.img_width,
 			&data->img.img_height);
 	data->img.map_coin = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/coin.xpm",
+			"./images/bonus/coins/0.xpm",
 			&data->img.img_width,
 			&data->img.img_height);
 }

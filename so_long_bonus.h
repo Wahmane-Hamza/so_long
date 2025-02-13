@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 15:41:22 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:24:39 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
 
 // Animation
-void    		stop_animation(t_mlx_data *data, int i, char *link);
+void    		coin_animation(t_mlx_data *data, int num, char *link);
+void    		stop_animation(t_mlx_data *data, int num, char *link);
 
 #endif
