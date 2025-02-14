@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/14 18:19:06 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/14 20:41:50 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef	struct s_enemy_path
 	char	*enemy_left;
 	char	*enemy_front;
 	char	*enemy_right;
-	int		counter;
 }				t_enemy_path;
 
 typedef	struct s_img_sides
@@ -50,8 +49,7 @@ typedef	struct s_img_sides
 	int	right;
 	int enemy_front;
 	int enemy_right;
-	int	attack_front;
-	int	attack_right;
+	int	death;
 	t_enemy_path	enemy_path;
 }				s_img_side;
 
@@ -127,5 +125,9 @@ void    		coin_animation(t_mlx_data *data, int num, char *link);
 void    		stop_animation(t_mlx_data *data, int num, char *link);
 void			home_animation(t_mlx_data *data, int num, char *link);
 void			enemy_animation(t_mlx_data *data, int num);
+void			death_animation(t_mlx_data *data);
+
+
+int	animation(t_mlx_data *data);
 
 #endif
