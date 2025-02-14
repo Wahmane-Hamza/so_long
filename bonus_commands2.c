@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_commands2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 16:37:28 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:07:21 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	open_door(t_mlx_data *data, int num, char x_y)
 	if (x_y == 'y')
 	{
 		if (data->map.array[num][data->elem.p_posx] == 'E'
-			&& data->elem.house_open == 1)
+			&& data->elem.house_open != 0)
 		{
 			write(1, "Congratulations! You won!", 25);
 			free_destroy(data);
@@ -34,7 +34,7 @@ void	open_door(t_mlx_data *data, int num, char x_y)
 	else if (x_y == 'x')
 	{
 		if (data->map.array[data->elem.p_posy][num] == 'E'
-			&& data->elem.house_open == 1)
+			&& data->elem.house_open != 0)
 		{
 			write(1, "Congratulations! You won!", 25);
 			free_destroy(data);
@@ -110,8 +110,16 @@ void	free_destroy(t_mlx_data *data)
 {
 	if (data->img.map_ground)
 		mlx_destroy_image(data->mlx, data->img.map_ground);
-	if (data->img.map_player_front)
-		mlx_destroy_image(data->mlx, data->img.map_player_front);
+	if (data->img.enemy_front)
+		mlx_destroy_image(data->mlx, data->img.enemy_front);
+	if (data->img.enemy_back)
+		mlx_destroy_image(data->mlx, data->img.enemy_back);
+	if (data->img.enemy_left)
+		mlx_destroy_image(data->mlx, data->img.enemy_left);
+	if (data->img.enemy_right)
+		mlx_destroy_image(data->mlx, data->img.enemy_right);
+	if (data->img.map_player)
+		mlx_destroy_image(data->mlx, data->img.map_player);
 	if (data->img.house_open)
 		mlx_destroy_image(data->mlx, data->img.house_open);
 	if (data->img.house_close)

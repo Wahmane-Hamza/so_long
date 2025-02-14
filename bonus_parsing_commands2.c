@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_parsing_commands2.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:39:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 14:00:40 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:50:48 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	check_line_char(char *line, int fd)
 	while (line[i] != '\0' && line[i] != '\n')
 	{
 		if (line[i] == 'P' || line[i] == 'C' || line[i] == 'E' || line[i] == '1'
-			|| line[i] == '0')
+			|| line[i] == '0' || line[i] == 'M')
 			i++;
 		else
 			error_exit("Error: Invalid char in the map", line, fd, NULL);

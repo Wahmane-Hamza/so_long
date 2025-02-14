@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_parsing_commands.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 17:22:20 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:22:03 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
 				data->elem.e++;
 			if (line[add_check] == 'C')
 				data->elem.c++;
+			if (line[add_check] == 'M')
+				data->elem.m++;
 			add_check++;
 		}
 	}
@@ -62,6 +64,8 @@ int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
 			error_exit("Error:The map must contain Player(P)", line, fd, NULL);
 		if (data->elem.c == 0)
 			error_exit("Error: The map must contain a Coin(C)", line, fd, NULL);
+		if (data->elem.m == 0)
+			error_exit("Error: The map must contain a Enemy(M)", line, fd, NULL);
 	}
 	return (add_check);
 }
@@ -100,6 +104,7 @@ int	check_all(char **av, t_mlx_data *data)
 	data->elem.p = 0;
 	data->elem.e = 0;
 	data->elem.c = 0;
+	data->elem.m = 0;
 	check_map_extention(av);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)

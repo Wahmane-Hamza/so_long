@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_commands3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 18:08:53 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:51:58 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	check_map_extention(char **av)
 	{
 		if (av[1][i] == '.')
 		{
-			if (ft_strncmp("ber", &av[1][i + 1], ft_strlen(&av[1][i + 1])) != 0
+			if (i == 0)
+				continue;
+			else if (ft_strncmp("ber", &av[1][i + 1], ft_strlen(&av[1][i + 1])) != 0
 				|| ft_strncmp("ber", &av[1][i + 1], 3) != 0)
 				error_exit("extention not (.ber)", NULL, -1, NULL);
 		}

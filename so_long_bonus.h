@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 16:38:33 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:19:06 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,26 @@
 # define ESC 65307
 # define ON_DESTROY 17
 
+typedef	struct s_enemy_path
+{
+	char	*enemy_back;
+	char	*enemy_left;
+	char	*enemy_front;
+	char	*enemy_right;
+	int		counter;
+}				t_enemy_path;
+
 typedef	struct s_img_sides
 {
 	int	front;
 	int	right;
+	int enemy_front;
+	int enemy_right;
+	int	attack_front;
+	int	attack_right;
+	t_enemy_path	enemy_path;
 }				s_img_side;
+
 
 typedef struct s_img
 {
@@ -48,13 +63,14 @@ typedef struct s_img
 	int			img_height;
 	char		*map_ground;
 	char		*map_wall;
-	char		*map_player_front;
-	char		*map_player_back;
-	char		*map_player_left;
-	char		*map_player_right;
+	char		*map_player;
 	char		*map_coin;
 	char		*house_open;
 	char		*house_close;
+	char		*enemy_front;
+	char		*enemy_back;
+	char		*enemy_right;
+	char		*enemy_left;
 	s_img_side	side;
 }				t_img;
 
@@ -63,6 +79,7 @@ typedef struct l_elem_data
 	int			p;
 	int			e;
 	int			c;
+	int			m;
 	int			house_open;
 	int			p_posx;
 	int			p_posy;
@@ -87,7 +104,7 @@ typedef struct s_mlx_data
 
 // Parsing
 int				check_all(char **av, t_mlx_data *data);
-int				flood_fill(t_mlx_data *data);
+int				flood_fill_bonus(t_mlx_data *data);
 void			free_map(char **map);
 int				error_exit(char *message, char *line, int fd, char **array);
 char			**map_to_array(t_mlx_data *data, char **av);
@@ -103,9 +120,12 @@ void			draw_characters(t_mlx_data *data, int i);
 void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
 int				close_window(t_mlx_data *data);
+void			enemy_side(t_mlx_data *data, int i, int j);
 
 // Animation
 void    		coin_animation(t_mlx_data *data, int num, char *link);
 void    		stop_animation(t_mlx_data *data, int num, char *link);
+void			home_animation(t_mlx_data *data, int num, char *link);
+void			enemy_animation(t_mlx_data *data, int num);
 
 #endif

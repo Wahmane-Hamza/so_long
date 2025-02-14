@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 15:27:48 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 17:22:27 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:07:39 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**flood_fill_exit(int x, int y, char **map)
 	return (map);
 }
 
-int	flood_fill(t_mlx_data *data)
+int	flood_fill_bonus(t_mlx_data *data)
 {
 	char	**cpy_array;
 

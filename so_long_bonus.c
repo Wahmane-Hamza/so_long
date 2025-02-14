@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 16:37:56 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:49:20 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,25 @@ int	animation(t_mlx_data *data)
 	static	int	i;
 	static	int	j;
 
-
+	data->img.side.enemy_path.counter = 0;
 	if (i > 5)
 		i = 0;
 	if (j > 9)
 		j = 0;
+
 	coin_animation(data, j, "./images/bonus/coins/");
+	if (data->elem.house_open != 0)
+	{
+		if (data->elem.house_open == 1)
+		{
+			home_animation(data, i, "./images/bonus/home_pic/home_to_open/");
+			data->elem.house_open = 2;
+		}
+		else
+			home_animation(data, i, "./images/bonus/home_pic/home_open/");
+	}
+	else
+		home_animation(data, i, "./images/bonus/home_pic/home_close/");
 	if (data->img.side.front == 1)
 		stop_animation(data, i, "./images/bonus/stop/stop_front/");
 	else if (data->img.side.front == 2)
@@ -32,7 +45,22 @@ int	animation(t_mlx_data *data)
 		stop_animation(data, i, "./images/bonus/stop/stop_right/");
 	else if (data->img.side.right == 2)
 		stop_animation(data, i, "./images/bonus/stop/stop_left/");
-	usleep(100000);
+	data->img.side.enemy_path.enemy_front = "./images/bonus/enemy/enemy_front/";
+	data->img.side.enemy_path.enemy_left = "./images/bonus/enemy/enemy_left/";
+	data->img.side.enemy_path.enemy_back = "./images/bonus/enemy/enemy_back/";
+	data->img.side.enemy_path.enemy_right = "./images/bonus/enemy/enemy_right/";
+	if (data->img.side.attack_front == 1)
+		data->img.side.enemy_path.enemy_front = "./images/bonus/attack/attack_front/";
+	else if (data->img.side.attack_front == 2)
+		data->img.side.enemy_path.enemy_back = "./images/bonus/attack/attack_back/";
+	else if (data->img.side.attack_right == 1)
+		data->img.side.enemy_path.enemy_right = "./images/bonus/attack/attack_right/";
+	else if (data->img.side.attack_right == 2)
+		data->img.side.enemy_path.enemy_left = "./images/bonus/attack/attack_left/";
+	data->img.side.attack_front = 0;
+	data->img.side.attack_right == 0;
+	enemy_animation(data, i);
+	usleep(130000);
 	draw_map(data);
 	i++;
 	j++;
@@ -48,7 +76,7 @@ int	main(int ac, char **av)
 		if (check_all(av, &data) == 0)
 			return (0);
 		data.map.array = map_to_array(&data, av);
-		if (flood_fill(&data) == 0)
+		if (flood_fill_bonus(&data) == 0)
 			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
 		data.mlx = mlx_init();
 		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80,
@@ -56,7 +84,6 @@ int	main(int ac, char **av)
 		image_link(&data);
 		draw_map(&data);
 		mlx_loop_hook(data.mlx, animation, &data);
-		data.elem.num_move = 0;
 		mlx_key_hook(data.mlx_win, key_hook, &data);
 		mlx_hook(data.mlx_win, 17, 0, close_window, &data);
 		mlx_loop(data.mlx);
