@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:52:30 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 16:54:22 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:02:19 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
+void	*ft_memset(void *str, int c, size_t n);
 
 #endif

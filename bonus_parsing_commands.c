@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/14 11:22:03 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 15:10:46 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,21 @@ int	check_t_b_wall(char *line)
 	return (i);
 }
 
-int	check_caracters(char *line, t_mlx_data *data, int add_check, int fd)
+int	check_caracters(char *line, t_mlx_data *data, int i)
 {
-	if (add_check == 0)
+	while (line[i] != '\n' && line[i] != '\0')
 	{
-		while (line[add_check] != '\n' && line[add_check] != '\0')
-		{
-			if (line[add_check] == 'P')
-				data->elem.p++;
-			if (line[add_check] == 'E')
-				data->elem.e++;
-			if (line[add_check] == 'C')
-				data->elem.c++;
-			if (line[add_check] == 'M')
-				data->elem.m++;
-			add_check++;
-		}
+		if (line[i] == 'P')
+			data->elem.p++;
+		if (line[i] == 'E')
+			data->elem.e++;
+		if (line[i] == 'C')
+			data->elem.c++;
+		if (line[i] == 'M')
+			data->elem.m++;
+		i++;
 	}
-	else if (add_check == 1)
-	{
-		if (data->elem.e != 1)
-			error_exit("Error: The map must contain a Exit(E)", line, fd, NULL);
-		if (data->elem.p != 1)
-			error_exit("Error:The map must contain Player(P)", line, fd, NULL);
-		if (data->elem.c == 0)
-			error_exit("Error: The map must contain a Coin(C)", line, fd, NULL);
-		if (data->elem.m == 0)
-			error_exit("Error: The map must contain a Enemy(M)", line, fd, NULL);
-	}
-	return (add_check);
+	return (i);
 }
 
 void	*check_element_map(char *line, t_mlx_data *data, int fd, int len)
@@ -84,7 +70,7 @@ void	*check_element_map(char *line, t_mlx_data *data, int fd, int len)
 			error_exit("Error: empty line", line, fd, NULL);
 		if (line[i] != '1')
 			error_exit("Error: The start not wall", line, fd, NULL);
-		i = check_caracters(line, data, i, -1);
+		i = check_caracters(line, data, i);
 		if (line[i - 1] != '1')
 			error_exit("Error: The end not wall", line, fd, NULL);
 		if (len != i)
@@ -101,10 +87,8 @@ int	check_all(char **av, t_mlx_data *data)
 	char	*line;
 	int		len;
 
-	data->elem.p = 0;
-	data->elem.e = 0;
-	data->elem.c = 0;
-	data->elem.m = 0;
+	ft_memset(&data->elem, 0, sizeof(data->elem));
+	data->map.render = 1;
 	check_map_extention(av);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
@@ -119,7 +103,7 @@ int	check_all(char **av, t_mlx_data *data)
 	if (len == 0)
 		error_exit("Error: The wall not all 1", line, fd, NULL);
 	line = check_element_map(line, data, fd, len);
-	check_caracters(line, data, 1, fd);
+	check_caracters2(line, data, fd);
 	free(line);
 	close(fd);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 12:23:33 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 14:01:19 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,7 @@ void    enemy_animation(t_mlx_data *data, int num)
 			full_path, &data->img.img_width,
 			&data->img.img_height);
 	free(full_path);
-	number = ft_itoa(num);
-	path = ft_strjoin(data->img.side.enemy_path.enemy_right, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-	data->img.enemy_right = mlx_xpm_file_to_image(data->mlx,
-			full_path, &data->img.img_width,
-			&data->img.img_height);
-	free(full_path);
-	number = ft_itoa(num);
-	path = ft_strjoin(data->img.side.enemy_path.enemy_left, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-	data->img.enemy_left = mlx_xpm_file_to_image(data->mlx,
-			full_path, &data->img.img_width,
-			&data->img.img_height);
-	free(full_path);
+	enemy_animation2(data, num);
 }
 
 void    home_animation(t_mlx_data *data, int num, char *link)
@@ -115,6 +98,7 @@ void    stop_animation(t_mlx_data *data, int num, char *link)
                 &data->img.img_height);
 	free(full_path);
 }
+
 void win_lose(t_mlx_data *data)
 {
 	int	x_center;

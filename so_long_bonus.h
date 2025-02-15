@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 12:24:08 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 16:57:59 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,15 @@ typedef struct l_elem_data
 	int			house_open;
 	int			p_posx;
 	int			p_posy;
+	int			m_posx;
+	int			m_posy;
 	int			num_move;
 }				t_elem_data;
 
 typedef struct t_map_data
 {
 	char		**array;
+	int			render;
 	int			map_x_len;
 	int			map_y_len;
 }				t_map_data;
@@ -111,6 +114,8 @@ void			check_line_char(char *line, int fd);
 int				check_t_b_wall(char *line);
 void			check_map_extention(char **av);
 void			find_p_pos(t_mlx_data *data);
+int				check_caracters2(char *line, t_mlx_data *data, int fd);
+void			check_screen_size(t_mlx_data *data, int fd);
 
 // Mandatory commands
 int				draw_map(t_mlx_data *data);
@@ -129,6 +134,19 @@ void			enemy_animation(t_mlx_data *data, int num);
 void			death(t_mlx_data *data);
 void			win_lose(t_mlx_data *data);
 
+
+// animation2
+void			enemy_animation2(t_mlx_data *data, int num);
+void			death(t_mlx_data *data);
 int				animation(t_mlx_data *data);
+
+// bonus_commands2
+void			move_player(t_mlx_data *data, char x_y, int num);
+
+// bonus_commands3
+void			image_link_enemy(t_mlx_data *data);
+void			enemy_destroy(t_mlx_data *data);
+void			player_side(t_mlx_data*data, int front, int right, int move);
+void			home_open(t_mlx_data *data);
 
 #endif

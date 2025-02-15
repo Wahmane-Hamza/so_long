@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 12:25:28 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 15:28:31 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,70 +49,46 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 	if (x_y == 'y')
 	{
 		if (data->map.array[num][data->elem.p_posx] == 'M')
-		{
 			data->img.side.finish = 1;
-			return ;
-		}
 		else if (data->map.array[num][data->elem.p_posx] != '1'
 			&& data->map.array[num][data->elem.p_posx] != 'E')
 		{
 			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
 			data->map.array[num][data->elem.p_posx] = 'P';
-			print_movements(data);
 		}
 		open_door(data, num, x_y);
 	}
 	else if (x_y == 'x')
 	{
 		if (data->map.array[data->elem.p_posy][num] == 'M')
-		{
 			data->img.side.finish = 1;
-			return ;
-		}
 		else if (data->map.array[data->elem.p_posy][num] != '1'
 			&& data->map.array[data->elem.p_posy][num] != 'E')
 		{
 			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
 			data->map.array[data->elem.p_posy][num] = 'P';
-			print_movements(data);
 		}
 		open_door(data, num, x_y);
 	}
+	print_movements(data);
 }
 
 int	key_hook(int keysym, t_mlx_data *data)
 {
-	data->img.side.front = 1;
-	data->img.side.right = 0;
+
 	if (keysym == KEY_W || keysym == KEY_UP)
-	{
-		data->img.side.front = 2;
-		data->img.side.right = 0;
-		move_player(data, 'y', data->elem.p_posy - 1);
-	}
+		player_side(data, 2, 0, 0);
 	else if (keysym == KEY_S || keysym == KEY_DOWN)
-	{
-		data->img.side.front = 1;
-		data->img.side.right = 0;
-		move_player(data, 'y', data->elem.p_posy + 1);
-	}
+		player_side(data, 1, 0, 1);
 	else if (keysym == KEY_D || keysym == KEY_RIGHT)
-	{
-		data->img.side.front = 0;
-		data->img.side.right = 1;
-		move_player(data, 'x', data->elem.p_posx + 1);
-	}
+		player_side(data, 0, 1, 2);
 	else if (keysym == KEY_A || keysym == KEY_LEFT)
-	{
-		data->img.side.front = 0;
-		data->img.side.right = 2;
-		move_player(data, 'x', data->elem.p_posx - 1);
-	}
+		player_side(data, 0, 2, 3);
 	else if (keysym == ESC || keysym == ON_DESTROY)
 		free_destroy(data);
 	else
 		return (0);
-	mlx_clear_window(data->mlx, data->mlx_win);
+	data->map.render = 0;
 	draw_map(data);
 	find_p_pos(data);
 	return (1);
@@ -122,14 +98,6 @@ void	free_destroy(t_mlx_data *data)
 {
 	if (data->img.map_ground)
 		mlx_destroy_image(data->mlx, data->img.map_ground);
-	if (data->img.enemy_front)
-		mlx_destroy_image(data->mlx, data->img.enemy_front);
-	if (data->img.enemy_back)
-		mlx_destroy_image(data->mlx, data->img.enemy_back);
-	if (data->img.enemy_left)
-		mlx_destroy_image(data->mlx, data->img.enemy_left);
-	if (data->img.enemy_right)
-		mlx_destroy_image(data->mlx, data->img.enemy_right);
 	if (data->img.map_player)
 		mlx_destroy_image(data->mlx, data->img.map_player);
 	if (data->img.house_open)
@@ -140,6 +108,7 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_image(data->mlx, data->img.map_wall);
 	if (data->img.map_coin)
 		mlx_destroy_image(data->mlx, data->img.map_coin);
+	enemy_destroy(data);
 	if (data->map.array)
 		free_map(data->map.array);
 	if (data->mlx_win)

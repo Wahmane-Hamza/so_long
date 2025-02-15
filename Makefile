@@ -14,12 +14,12 @@ SRCSB = so_long_bonus.c ./get_next_line/get_next_line.c ./get_next_line/get_next
 		bonus_parsing_commands.c \
 		flood_fill_bonus.c bonus_parsing_commands2.c \
 		bonus_parsing_commands3.c \
-		bonus_commands.c bonus_commands2.c \
-		animation.c ./libft/ft_split.c ./libft/ft_putchar.c \
+		bonus_commands.c bonus_commands2.c bonus_commands3.c \
+		animation.c animation2.c ./libft/ft_split.c ./libft/ft_putchar.c \
 		./libft/ft_strdup.c ./libft/ft_strlen.c ./libft/ft_substr.c \
 		./libft/ft_strlcpy.c ./libft/ft_strnstr.c ./libft/ft_strjoin.c \
 		./libft/ft_strlcat.c ./libft/ft_putstr_fd.c ./libft/ft_itoa.c ./libft/ft_strncmp.c \
-		./libft/ft_putnbr_fd.c
+		./libft/ft_putnbr_fd.c ./libft/ft_memset.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I/usr/local/include -g3

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:39:46 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/14 13:50:48 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 14:21:46 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	**map_to_array(t_mlx_data *data, char **av)
 	data->map.array[i] = NULL;
 	if (check_t_b_wall(data->map.array[i - 1]) == 0)
 		error_exit("Error: The wall not all 1", line, fd, data->map.array);
+	check_screen_size(data, fd);
 	return (close(fd), data->map.array);
 }
 
