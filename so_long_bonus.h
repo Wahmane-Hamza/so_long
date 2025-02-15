@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/14 20:41:50 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 10:36:27 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,9 @@ void    		coin_animation(t_mlx_data *data, int num, char *link);
 void    		stop_animation(t_mlx_data *data, int num, char *link);
 void			home_animation(t_mlx_data *data, int num, char *link);
 void			enemy_animation(t_mlx_data *data, int num);
-void			death_animation(t_mlx_data *data);
+void			death(t_mlx_data *data);
+void			win_lose(t_mlx_data *data);
 
-
-int	animation(t_mlx_data *data);
+int				animation(t_mlx_data *data);
 
 #endif

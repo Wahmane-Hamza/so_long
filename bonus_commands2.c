@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/14 20:59:05 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 10:31:00 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		if (data->map.array[num][data->elem.p_posx] == 'M')
 		{
 			data->img.side.death = 1;
-			death_animation(data);
-			write(1, "You lose !!", 11);
-			free_destroy(data);
+			return ;
 		}
 		else if (data->map.array[num][data->elem.p_posx] != '1'
 			&& data->map.array[num][data->elem.p_posx] != 'E')
@@ -67,9 +65,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		if (data->map.array[data->elem.p_posy][num] == 'M')
 		{
 			data->img.side.death = 1;
-			death_animation(data);
-			write(1, "You lose !!", 11);
-			free_destroy(data);
+			return ;
 		}
 		else if (data->map.array[data->elem.p_posy][num] != '1'
 			&& data->map.array[data->elem.p_posy][num] != 'E')
