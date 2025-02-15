@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:28:31 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 19:00:07 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	print_movements(t_mlx_data *data)
 {
-	data->elem.num_move++;
-	write(1, "Number of movements: ", 21);
-	ft_putnbr_fd(data->elem.num_move, 1);
-	write(1, "\n", 1);
+	char *number;
+
+	mlx_set_font(data->mlx, data->mlx_win, "9x15");
+    mlx_string_put(data->mlx, data->mlx_win, 0, 0, 0x000000, "    ");
+	number = ft_itoa(data->elem.num_move++);
+	mlx_set_font(data->mlx, data->mlx_win, "9x15");
+    mlx_string_put(data->mlx, data->mlx_win, 80, 80, 0xFFFFFF, number);
 }
 
 void	open_door(t_mlx_data *data, int num, char x_y)
@@ -75,16 +78,15 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 
 int	key_hook(int keysym, t_mlx_data *data)
 {
-
-	if (keysym == KEY_W || keysym == KEY_UP)
+	if (keysym == KEY_W || keysym == KEY_UP && data->img.side.finish != 1)
 		player_side(data, 2, 0, 0);
-	else if (keysym == KEY_S || keysym == KEY_DOWN)
+	else if (keysym == KEY_S || keysym == KEY_DOWN && data->img.side.finish != 1)
 		player_side(data, 1, 0, 1);
-	else if (keysym == KEY_D || keysym == KEY_RIGHT)
+	else if (keysym == KEY_D || keysym == KEY_RIGHT && data->img.side.finish != 1)
 		player_side(data, 0, 1, 2);
-	else if (keysym == KEY_A || keysym == KEY_LEFT)
+	else if (keysym == KEY_A || keysym == KEY_LEFT && data->img.side.finish != 1)
 		player_side(data, 0, 2, 3);
-	else if (keysym == ESC || keysym == ON_DESTROY)
+	else if (keysym == ESC || keysym == ON_DESTROY && data->img.side.finish != 1)
 		free_destroy(data);
 	else
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/15 18:14:39 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 18:39:23 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,26 +107,21 @@ void	enemy_death(t_mlx_data *data, int i)
 
 void	death(t_mlx_data *data)
 {
-	int	j;
 	int	i;
 
-	j = 0;
 	i = 0;
-	while (j <= 9)
+	while (i <= 8)
 	{
 		if (data->img.side.front == 1)
-			stop_animation(data, j, "./images/bonus/death/death_front/");
+			stop_animation(data, i, "./images/bonus/death/death_front/");
 		else if (data->img.side.front == 2)
-			stop_animation(data, j, "./images/bonus/death/death_back/");
+			stop_animation(data, i, "./images/bonus/death/death_back/");
 		else if (data->img.side.right == 1)
-			stop_animation(data, j, "./images/bonus/death/death_right/");
+			stop_animation(data, i, "./images/bonus/death/death_right/");
 		else if (data->img.side.right == 2)
-			stop_animation(data, j, "./images/bonus/death/death-left/");
+			stop_animation(data, i, "./images/bonus/death/death-left/");
 		usleep(200000);
 		draw_map(data);
-		j++;
-		if (j == 5)
-			i = 0;
 		enemy_death(data, i);
 		i++;
 	}
