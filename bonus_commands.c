@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 18:10:36 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 22:00:49 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ int	draw_map(t_mlx_data *data)
 		draw_characters(data, i);
 	else
 		draw_player_position(data, i);
+	print_movements(data);
 	return (1);
 }
 int	close_window(t_mlx_data *data)

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 16:57:59 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 22:02:11 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int				animation(t_mlx_data *data);
 
 // bonus_commands2
 void			move_player(t_mlx_data *data, char x_y, int num);
+void			print_movements(t_mlx_data *data);
 
 // bonus_commands3
 void			image_link_enemy(t_mlx_data *data);
