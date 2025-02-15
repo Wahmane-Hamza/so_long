@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 11:30:14 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 12:27:57 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,34 @@ int	animation(t_mlx_data *data)
 	if (j > 9)
 		j = 0;
 
-	if (data->img.side.death == 1)
+	if (data->img.side.finish == 1)
 	{
 		if (k == 0)
-			death(data);
+		{
+			if (data->img.side.win != 1)
+				death(data);
+			mlx_clear_window(data->mlx, data->mlx_win);
+		}
 		win_lose(data);
 		if (k == 20)
 			free_destroy(data);
 		k++;
 	}
-
-	coin_animation(data, j, "./images/bonus/coins/");
-	if (data->elem.house_open != 0)
+	else
 	{
-		if (data->elem.house_open == 1)
+		coin_animation(data, j, "./images/bonus/coins/");
+		if (data->elem.house_open != 0)
 		{
-			home_animation(data, i, "./images/bonus/home_pic/home_to_open/");
-			data->elem.house_open = 2;
+			if (data->elem.house_open == 1)
+			{
+				home_animation(data, i, "./images/bonus/home_pic/home_to_open/");
+				data->elem.house_open = 2;
+			}
+			else
+				home_animation(data, i, "./images/bonus/home_pic/home_open/");
 		}
 		else
-			home_animation(data, i, "./images/bonus/home_pic/home_open/");
-	}
-	else
 		home_animation(data, i, "./images/bonus/home_pic/home_close/");
-	if (data->img.side.death != 1)
-	{
 		if (data->img.side.front == 1)
 			stop_animation(data, i, "./images/bonus/stop/stop_front/");
 		else if (data->img.side.front == 2)
@@ -76,14 +79,14 @@ int	animation(t_mlx_data *data)
 			stop_animation(data, i, "./images/bonus/stop/stop_right/");
 		else if (data->img.side.right == 2)
 			stop_animation(data, i, "./images/bonus/stop/stop_left/");
+		data->img.side.enemy_path.enemy_front = "./images/bonus/enemy/enemy_front/";
+		data->img.side.enemy_path.enemy_left = "./images/bonus/enemy/enemy_left/";
+		data->img.side.enemy_path.enemy_back = "./images/bonus/enemy/enemy_back/";
+		data->img.side.enemy_path.enemy_right = "./images/bonus/enemy/enemy_right/";
+		enemy_animation(data, i);
 	}
-	data->img.side.enemy_path.enemy_front = "./images/bonus/enemy/enemy_front/";
-	data->img.side.enemy_path.enemy_left = "./images/bonus/enemy/enemy_left/";
-	data->img.side.enemy_path.enemy_back = "./images/bonus/enemy/enemy_back/";
-	data->img.side.enemy_path.enemy_right = "./images/bonus/enemy/enemy_right/";
-	enemy_animation(data, i);
 	usleep(130000);
-	if (data->img.side.death != 1)
+	if (data->img.side.finish != 1)
 		draw_map(data);
 	i++;
 	j++;

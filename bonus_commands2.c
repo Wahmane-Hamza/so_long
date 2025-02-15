@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 10:31:00 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 12:25:28 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,19 @@ void	open_door(t_mlx_data *data, int num, char x_y)
 		if (data->map.array[num][data->elem.p_posx] == 'E'
 			&& data->elem.house_open != 0)
 		{
-			write(1, "Congratulations! You won!", 25);
-			free_destroy(data);
-		}
+			data->img.side.finish = 1;
+			data->img.side.win = 1;
+			return ;
+		}	
 	}
 	else if (x_y == 'x')
 	{
 		if (data->map.array[data->elem.p_posy][num] == 'E'
 			&& data->elem.house_open != 0)
 		{
-			write(1, "Congratulations! You won!", 25);
-			free_destroy(data);
+			data->img.side.finish = 1;
+			data->img.side.win = 1;
+			return ;
 		}
 	}
 }
@@ -48,7 +50,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 	{
 		if (data->map.array[num][data->elem.p_posx] == 'M')
 		{
-			data->img.side.death = 1;
+			data->img.side.finish = 1;
 			return ;
 		}
 		else if (data->map.array[num][data->elem.p_posx] != '1'
@@ -64,7 +66,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 	{
 		if (data->map.array[data->elem.p_posy][num] == 'M')
 		{
-			data->img.side.death = 1;
+			data->img.side.finish = 1;
 			return ;
 		}
 		else if (data->map.array[data->elem.p_posy][num] != '1'

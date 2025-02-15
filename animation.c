@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 11:30:36 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 12:23:33 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,25 @@ void    stop_animation(t_mlx_data *data, int num, char *link)
 }
 void win_lose(t_mlx_data *data)
 {
-    mlx_clear_window(data->mlx, data->mlx_win);
+	int	x_center;
+	int	y_center;
+	char	*link;
+
+	if (data->img.side.win == 1)
+		link = "./images/bonus/win_lose/win.xpm";
+	else
+		link = "./images/bonus/win_lose/game_over.xpm";
     data->img.img = mlx_xpm_file_to_image(data->mlx,
-            "./images/bonus/win_lose/game_over.xpm",
+            link,
             &data->img.img_width,
             &data->img.img_height);
-    mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,( data->map.map_x_len * 80) / 2, (data->map.map_y_len * 80) / 2);
+	if ((data->map.map_x_len * 80) > data->img.img_width)
+		x_center = ((data->map.map_x_len * 80) - data->img.img_width) / 2 ;
+	else
+		x_center = 0 ;
+	if ((data->map.map_y_len * 80) > data->img.img_height)
+		y_center = ((data->map.map_y_len * 80) - data->img.img_height) / 2 ;
+	else
+		y_center = 0;
+    mlx_put_image_to_window(data->mlx, data->mlx_win,data->img.img ,x_center, y_center);
 }

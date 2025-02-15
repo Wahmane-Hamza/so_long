@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 10:36:27 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/15 12:24:08 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ typedef	struct s_img_sides
 	int	right;
 	int enemy_front;
 	int enemy_right;
-	int	death;
+	int	finish;
+	int	win;
 	t_enemy_path	enemy_path;
 }				s_img_side;
 
