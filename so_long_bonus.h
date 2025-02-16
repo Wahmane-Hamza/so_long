@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 22:02:11 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 16:25:07 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,50 +104,76 @@ typedef struct s_mlx_data
 	t_map_data	map;
 }				t_mlx_data;
 
-// Parsing
-int				check_all(char **av, t_mlx_data *data);
+// flood_fill_bonus
 int				flood_fill_bonus(t_mlx_data *data);
-void			free_map(char **map);
+
+// bonus_parsing_commands
 int				error_exit(char *message, char *line, int fd, char **array);
+int				check_t_b_wall(char *line);
+int				check_caracters(char *line, t_mlx_data *data, int i);
+void			*check_element_map(char *line, t_mlx_data *data, int fd, int len);
+int				check_all(char **av, t_mlx_data *data);
+
+// bonus_parsing_commands2
+void			find_p_pos(t_mlx_data *data);
+void			free_map(char **map);
+void			*map_len(t_mlx_data *data, char **av);
 char			**map_to_array(t_mlx_data *data, char **av);
 void			check_line_char(char *line, int fd);
-int				check_t_b_wall(char *line);
+
+// bonus_parsing_commands3
 void			check_map_extention(char **av);
-void			find_p_pos(t_mlx_data *data);
-int				check_caracters2(char *line, t_mlx_data *data, int fd);
+void			enemy_side(t_mlx_data *data, int i, int j);
+void			check_caracters2(char *line, t_mlx_data *data, int fd);
 void			check_screen_size(t_mlx_data *data, int fd);
 
-// Mandatory commands
-int				draw_map(t_mlx_data *data);
-int				key_hook(int keysym, t_mlx_data *data);
-void			draw_characters(t_mlx_data *data, int i);
-void			image_link(t_mlx_data *data);
-void			free_destroy(t_mlx_data *data);
-int				close_window(t_mlx_data *data);
-void			enemy_side(t_mlx_data *data, int i, int j);
-
 // Animation
+void			enemy_animation(t_mlx_data *data, int num);
+void			home_animation(t_mlx_data *data, int num, char *link);
 void    		coin_animation(t_mlx_data *data, int num, char *link);
 void    		stop_animation(t_mlx_data *data, int num, char *link);
-void			home_animation(t_mlx_data *data, int num, char *link);
-void			enemy_animation(t_mlx_data *data, int num);
-void			death(t_mlx_data *data);
 void			win_lose(t_mlx_data *data);
-
 
 // animation2
 void			enemy_animation2(t_mlx_data *data, int num);
-void			death(t_mlx_data *data);
+void			enemy_death_animation(t_mlx_data *data, int num, char *link, int side);
+void			characters_animation(t_mlx_data *data, int i);
+void			finish(t_mlx_data *data, int k);
 int				animation(t_mlx_data *data);
 
+// animation 3
+void			enemy_death(t_mlx_data *data, int i);
+void			death(t_mlx_data *data);
+void			win(t_mlx_data *data);
+void			enemy_death_animation2(t_mlx_data *data, int side, char *link);
+
+// bonus_commands
+int				check_coins(t_mlx_data *data);
+void			draw_ground(t_mlx_data *data, int y, int x);
+void			draw_ground_player(t_mlx_data *data);
+void			draw_player_position(t_mlx_data *data, int i);
+int				draw_map(t_mlx_data *data);
+
+
 // bonus_commands2
-void			move_player(t_mlx_data *data, char x_y, int num);
 void			print_movements(t_mlx_data *data);
+void			open_door(t_mlx_data *data, int num, char x_y);
+void			move_player(t_mlx_data *data, char x_y, int num);
+int				key_hook(int keysym, t_mlx_data *data);
+void			free_destroy(t_mlx_data *data);
 
 // bonus_commands3
 void			image_link_enemy(t_mlx_data *data);
-void			enemy_destroy(t_mlx_data *data);
 void			player_side(t_mlx_data*data, int front, int right, int move);
+void			enemy_destroy(t_mlx_data *data);
 void			home_open(t_mlx_data *data);
+int				close_window(t_mlx_data *data);
+
+// bonus_commands4
+void			put_image(t_mlx_data *data, int x, int y);
+void			draw_characters(t_mlx_data *data, int i);
+void			image_link(t_mlx_data *data);
+void			enemy_draw(t_mlx_data *data, int i, int j);
+void			change_player(t_mlx_data *data, int num, int x_y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:28:54 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/15 14:04:44 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 15:48:05 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,17 @@ void	enemy_destroy(t_mlx_data *data)
 	if (data->img.enemy_right)
 		mlx_destroy_image(data->mlx, data->img.enemy_right);
 }
+
 void	home_open(t_mlx_data *data)
 {
 	if (data->elem.house_open == 0)
 		data->img.img = data->img.house_close;
 	else if (data->elem.house_open != 0)
 		data->img.img = data->img.house_open;
+}
+
+int	close_window(t_mlx_data *data)
+{
+	free_destroy(data);
+	return (0);
 }

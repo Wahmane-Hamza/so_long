@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 22:01:44 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 16:26:09 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		else if (data->map.array[num][data->elem.p_posx] != '1'
 			&& data->map.array[num][data->elem.p_posx] != 'E')
 		{
-			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
-			data->map.array[num][data->elem.p_posx] = 'P';
+			change_player(data, num, 1);
 		}
 		open_door(data, num, x_y);
 	}
@@ -75,25 +74,23 @@ void	move_player(t_mlx_data *data, char x_y, int num)
 		else if (data->map.array[data->elem.p_posy][num] != '1'
 			&& data->map.array[data->elem.p_posy][num] != 'E')
 		{
-			data->map.array[data->elem.p_posy][data->elem.p_posx] = '0';
-			data->map.array[data->elem.p_posy][num] = 'P';
+			change_player(data, num, 2);
 		}
 		open_door(data, num, x_y);
 	}
-	data->elem.num_move++;
 }
 
 int	key_hook(int keysym, t_mlx_data *data)
 {
-	if (keysym == KEY_W || keysym == KEY_UP && data->img.side.finish != 1)
+	if ((keysym == KEY_W || keysym == KEY_UP) && data->img.side.finish != 1)
 		player_side(data, 2, 0, 0);
-	else if (keysym == KEY_S || keysym == KEY_DOWN && data->img.side.finish != 1)
+	else if ((keysym == KEY_S || keysym == KEY_DOWN) && data->img.side.finish != 1)
 		player_side(data, 1, 0, 1);
-	else if (keysym == KEY_D || keysym == KEY_RIGHT && data->img.side.finish != 1)
+	else if ((keysym == KEY_D || keysym == KEY_RIGHT) && data->img.side.finish != 1)
 		player_side(data, 0, 1, 2);
-	else if (keysym == KEY_A || keysym == KEY_LEFT && data->img.side.finish != 1)
+	else if ((keysym == KEY_A || keysym == KEY_LEFT) && data->img.side.finish != 1)
 		player_side(data, 0, 2, 3);
-	else if (keysym == ESC || keysym == ON_DESTROY && data->img.side.finish != 1)
+	else if ((keysym == ESC || keysym == ON_DESTROY) && data->img.side.finish != 1)
 		free_destroy(data);
 	else
 		return (0);

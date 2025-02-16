@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/16 14:57:54 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 15:57:36 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void    enemy_animation2(t_mlx_data *data, int num)
 	data->img.enemy_left = mlx_xpm_file_to_image(data->mlx,
 			full_path, &data->img.img_width,
 			&data->img.img_height);
+	if (data->img.enemy_right == NULL || data->img.enemy_left == NULL)
+		free_destroy(data);
 	free(full_path);
 }
 
@@ -61,71 +63,10 @@ void    enemy_death_animation(t_mlx_data *data, int num, char *link, int side)
 					full_path, &data->img.img_width,
 					&data->img.img_height);
 	}
-	if (side == 2)
-	{
-		data->img.enemy_right = mlx_xpm_file_to_image(data->mlx,
-					full_path, &data->img.img_width,
-					&data->img.img_height);
-	}
-	if (side == 3)
-	{
-		data->img.enemy_left = mlx_xpm_file_to_image(data->mlx,
-					full_path, &data->img.img_width,
-					&data->img.img_height);
-	}
+	enemy_death_animation2(data, side, full_path);
 	free(full_path);
 }
 
-void	enemy_death(t_mlx_data *data, int i)
-{
-	find_p_pos(data);
-	if (data->img.side.front == 1)
-	{
-		data->elem.m_posx = data->elem.p_posx;
-		data->elem.m_posy = data->elem.p_posy + 1;
-		enemy_death_animation(data, i, "./images/bonus/attack/attack_back/", 0);
-	}
-	else if (data->img.side.front == 2)
-	{
-		data->elem.m_posx = data->elem.p_posx;
-		data->elem.m_posy = data->elem.p_posy - 1;
-		enemy_death_animation(data, i, "./images/bonus/attack/attack_front/", 1);
-	}
-	else if (data->img.side.right == 1)
-	{
-		data->elem.m_posx = data->elem.p_posx + 1;
-		data->elem.m_posy = data->elem.p_posy;
-		enemy_death_animation(data, i, "./images/bonus/attack/attack_left/", 3);
-	}
-	else if (data->img.side.right == 2)
-	{
-		data->elem.m_posx = data->elem.p_posx - 1;
-		data->elem.m_posy = data->elem.p_posy;
-		enemy_death_animation(data, i, "./images/bonus/attack/attack_right/", 2);
-	}
-}
-
-void	death(t_mlx_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < 9)
-	{
-		if (data->img.side.front == 1)
-			stop_animation(data, i, "./images/bonus/death/death_front/");
-		else if (data->img.side.front == 2)
-			stop_animation(data, i, "./images/bonus/death/death_back/");
-		else if (data->img.side.right == 1)
-			stop_animation(data, i, "./images/bonus/death/death_right/");
-		else if (data->img.side.right == 2)
-			stop_animation(data, i, "./images/bonus/death/death-left/");
-		usleep(200000);
-		draw_map(data);
-		enemy_death(data, i);
-		i++;
-	}
-}
 void	characters_animation(t_mlx_data *data, int i)
 {
 	if (data->elem.house_open != 0)
@@ -153,21 +94,6 @@ void	characters_animation(t_mlx_data *data, int i)
 	data->img.side.enemy_path.enemy_back = "./images/bonus/enemy/enemy_back/";
 	data->img.side.enemy_path.enemy_right = "./images/bonus/enemy/enemy_right/";
 	enemy_animation(data, i);
-}
-
-void	win(t_mlx_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i <= 9)
-	{
-		stop_animation(data, -1, "./images/mandatory/ground.xpm");
-		home_animation(data, i, "./images/bonus/win_pic/");
-		usleep(200000);
-		draw_map(data);
-		i++;
-	}
 }
 
 void	finish(t_mlx_data *data, int k)

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 16:54:16 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 16:24:37 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	check_map_extention(char **av)
 		i++;
 	}
 }
+
 void	enemy_side(t_mlx_data *data, int i, int j)
 {
 	find_p_pos(data);
@@ -44,7 +45,7 @@ void	enemy_side(t_mlx_data *data, int i, int j)
 		data->img.img = data->img.enemy_front;
 }
 
-int	check_caracters2(char *line, t_mlx_data *data, int fd)
+void	check_caracters2(char *line, t_mlx_data *data, int fd)
 {
 	if (data->elem.e != 1)
 		error_exit("Error: Exit(E)", line, fd, NULL);

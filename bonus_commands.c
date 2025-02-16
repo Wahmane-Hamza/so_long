@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 14:18:31 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 15:53:58 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,69 +34,18 @@ int	check_coins(t_mlx_data *data)
 	return (1);
 }
 
-void	image_link(t_mlx_data *data)
+void	draw_ground(t_mlx_data *data, int y, int x)
 {
-	data->img.map_player = mlx_xpm_file_to_image(data->mlx,
-			"./images/bonus/stop/stop_front/1.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.map_ground = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/ground.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.house_close = mlx_xpm_file_to_image(data->mlx,
-			"./images/bonus/home_pic/home_close/0.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.house_open = mlx_xpm_file_to_image(data->mlx,
-			"./images/bonus/home_pic/home_to_open/0.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.map_wall = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/wall.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.map_coin = mlx_xpm_file_to_image(data->mlx,
-			"./images/bonus/coins/0.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	image_link_enemy(data);
+	if (data->map.array[y][x - 1] == '0')
+		put_image(data, x - 1, y);
+	if (data->map.array[y][x + 1] == '0')
+		put_image(data, x + 1, y);
+	if (data->map.array[y - 1][x] == '0')
+		put_image(data, x, y - 1);
+	if (data->map.array[y + 1][x] == '0')
+		put_image(data, x, y + 1);
 }
 
-void	draw_characters(t_mlx_data *data, int i)
-{
-	int	j;
-
-	while (data->map.array[i])
-	{
-		j = 0;
-		while (data->map.array[i][j])
-		{
-			if (data->map.array[i][j] == '1')
-				data->img.img = data->img.map_wall;
-			else if (data->map.array[i][j] == 'C')
-				data->img.img = data->img.map_coin;
-			else if (data->map.array[i][j] == 'E')
-				home_open(data);
-			else if (data->map.array[i][j] == 'P')
-				data->img.img = data->img.map_player;
-			else if (data->map.array[i][j] == 'M')
-				enemy_side(data, i, j);
-			else
-				data->img.img = data->img.map_ground;
-			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-				j * data->img.img_width, i * data->img.img_height);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	put_image(t_mlx_data *data, int x, int y)
-{
-		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-			x * data->img.img_width, y * data->img.img_height);
-}
 void	draw_ground_player(t_mlx_data *data)
 {
 	int	x;
@@ -121,16 +70,7 @@ void	draw_ground_player(t_mlx_data *data)
 			put_image(data, m_x, m_y);
 	}
 	else
-	{
-		if (data->map.array[y][x - 1] == '0')
-			put_image(data, x - 1, y);
-		if (data->map.array[y][x + 1] == '0')
-			put_image(data, x + 1, y);
-		if (data->map.array[y - 1][x] == '0')
-			put_image(data, x, y - 1);
-		if (data->map.array[y + 1][x] == '0')
-			put_image(data, x, y + 1);
-	}
+		draw_ground(data, y, x);
 }
 
 void	draw_player_position(t_mlx_data *data, int i)
@@ -148,12 +88,7 @@ void	draw_player_position(t_mlx_data *data, int i)
 			else if (data->map.array[i][j] == 'E')
 				home_open(data);
 			else if (data->map.array[i][j] == 'M')
-			{
-				if (data->img.side.finish != 1)
-					enemy_side(data, i, j);
-				else
-					data->img.img = NULL;
-			}
+				enemy_draw(data, i, j);
 			else
 				data->img.img = NULL;
 			if (data->img.img)
@@ -180,9 +115,4 @@ int	draw_map(t_mlx_data *data)
 		draw_player_position(data, i);
 	print_movements(data);
 	return (1);
-}
-int	close_window(t_mlx_data *data)
-{
-	free_destroy(data);
-	return (0);
 }

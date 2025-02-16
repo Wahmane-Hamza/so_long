@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 14:54:29 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 15:41:21 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void    enemy_animation(t_mlx_data *data, int num)
 	data->img.enemy_back = mlx_xpm_file_to_image(data->mlx,
 			full_path, &data->img.img_width,
 			&data->img.img_height);
+	if (data->img.enemy_front == NULL || data->img.enemy_back == NULL)
+		free_destroy(data);
 	free(full_path);
 	enemy_animation2(data, num);
 }
