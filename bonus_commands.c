@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 22:00:49 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 14:18:31 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	draw_player_position(t_mlx_data *data, int i)
 			if (data->map.array[i][j] == 'C')
 				data->img.img = data->img.map_coin;
 			else if (data->map.array[i][j] == 'E')
-					home_open(data);
+				home_open(data);
 			else if (data->map.array[i][j] == 'M')
 			{
 				if (data->img.side.finish != 1)

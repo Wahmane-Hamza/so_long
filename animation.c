@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 14:01:19 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 14:54:29 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,24 @@ void    stop_animation(t_mlx_data *data, int num, char *link)
 	char	*number;
 	char	*full_path;
 
-	number = ft_itoa(num);
-	path = ft_strjoin(link, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-    data->img.map_player = mlx_xpm_file_to_image(data->mlx,
-                full_path, &data->img.img_width,
-                &data->img.img_height);
-	free(full_path);
+	if (num != - 1)
+	{
+		number = ft_itoa(num);
+		path = ft_strjoin(link, number);
+		full_path = ft_strjoin(path, ".xpm");
+		free(number);
+		free(path);
+		data->img.map_player = mlx_xpm_file_to_image(data->mlx,
+					full_path, &data->img.img_width,
+					&data->img.img_height);
+		free(full_path);
+	}
+	else
+	{
+		data->img.map_player = mlx_xpm_file_to_image(data->mlx,
+					link, &data->img.img_width,
+					&data->img.img_height);
+	}
 }
 
 void win_lose(t_mlx_data *data)

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/15 18:39:23 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 14:57:54 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	death(t_mlx_data *data)
 	int	i;
 
 	i = 0;
-	while (i <= 8)
+	while (i < 9)
 	{
 		if (data->img.side.front == 1)
 			stop_animation(data, i, "./images/bonus/death/death_front/");
@@ -155,12 +155,29 @@ void	characters_animation(t_mlx_data *data, int i)
 	enemy_animation(data, i);
 }
 
+void	win(t_mlx_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 9)
+	{
+		stop_animation(data, -1, "./images/mandatory/ground.xpm");
+		home_animation(data, i, "./images/bonus/win_pic/");
+		usleep(200000);
+		draw_map(data);
+		i++;
+	}
+}
+
 void	finish(t_mlx_data *data, int k)
 {
 	if (k == 0)
 	{
 		if (data->img.side.win != 1)
 			death(data);
+		else
+			win(data);
 		mlx_clear_window(data->mlx, data->mlx_win);
 		sleep(1);
 	}
