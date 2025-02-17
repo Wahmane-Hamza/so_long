@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 16:26:09 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 01:47:59 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,26 +95,39 @@ int	key_hook(int keysym, t_mlx_data *data)
 	else
 		return (0);
 	data->map.render = 0;
-	draw_map(data);
+	if (data->img.side.finish != 1)
+		draw_map(data);
 	find_p_pos(data);
 	return (1);
 }
 
 void	free_destroy(t_mlx_data *data)
 {
-	if (data->img.map_ground)
-		mlx_destroy_image(data->mlx, data->img.map_ground);
-	if (data->img.map_player)
-		mlx_destroy_image(data->mlx, data->img.map_player);
-	if (data->img.house_open)
-		mlx_destroy_image(data->mlx, data->img.house_open);
-	if (data->img.house_close)
-		mlx_destroy_image(data->mlx, data->img.house_close);
-	if (data->img.map_wall)
-		mlx_destroy_image(data->mlx, data->img.map_wall);
-	if (data->img.map_coin)
-		mlx_destroy_image(data->mlx, data->img.map_coin);
-	enemy_destroy(data);
+	destroy_path(data);
+	destroy_path2(data);
+	destroy_path3(data);
+	
+	// if (data->img.enemy_back)
+	// 	mlx_destroy_image(data->mlx, data->img.enemy_back);
+	// if (data->img.enemy_front)
+	// 	mlx_destroy_image(data->mlx, data->img.enemy_front);
+	// if (data->img.enemy_left)
+	// 	mlx_destroy_image(data->mlx, data->img.enemy_left);
+	// if (data->img.enemy_right)
+	// 	mlx_destroy_image(data->mlx, data->img.enemy_right);
+	// if (data->img.house_close)
+	// 	mlx_destroy_image(data->mlx, data->img.house_close);
+	// if (data->img.house_open)
+	// 	mlx_destroy_image(data->mlx, data->img.house_open);
+	// if (data->img.map_coin)
+	// 	mlx_destroy_image(data->mlx, data->img.map_coin);
+	// if (data->img.map_player)
+	// 	mlx_destroy_image(data->mlx, data->img.map_player);
+		
+	if (data->path.map_ground)
+		mlx_destroy_image(data->mlx, data->path.map_ground);
+	if (data->path.map_wall)
+		mlx_destroy_image(data->mlx, data->path.map_wall);
 	if (data->map.array)
 		free_map(data->map.array);
 	if (data->mlx_win)
@@ -124,5 +137,5 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	exit (1);
+	exit (0);
 }

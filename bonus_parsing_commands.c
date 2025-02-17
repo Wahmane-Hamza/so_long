@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 15:10:46 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 01:45:21 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_all(char **av, t_mlx_data *data)
 	char	*line;
 	int		len;
 
-	ft_memset(&data->elem, 0, sizeof(data->elem));
+	set_zero(data);
 	data->map.render = 1;
 	check_map_extention(av);
 	fd = open(av[1], O_RDONLY);

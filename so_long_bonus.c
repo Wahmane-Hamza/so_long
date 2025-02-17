@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/15 14:29:47 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:50:26 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		data.mlx = mlx_init();
 		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80,
 				data.map.map_y_len * 80, "so_long");
-		image_link(&data);
+		path(&data);
 		draw_map(&data);
 		data.img.side.front = 1;
 		mlx_loop_hook(data.mlx, animation, &data);

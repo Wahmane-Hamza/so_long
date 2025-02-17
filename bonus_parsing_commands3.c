@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 16:24:37 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 01:47:43 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ void	check_map_extention(char **av)
 	}
 }
 
-void	enemy_side(t_mlx_data *data, int i, int j)
-{
-	find_p_pos(data);
-	if ((i == data->elem.p_posy + 2 || i == data->elem.p_posy + 1) 
-		&& j == data->elem.p_posx)
-		data->img.img = data->img.enemy_back;
-	else if (i == data->elem.p_posy 
-		&& (j == data->elem.p_posx + 2 || j == data->elem.p_posx + 1))
-		data->img.img = data->img.enemy_left;
-	else if (i == data->elem.p_posy
-		&& (j == data->elem.p_posx - 2 || j == data->elem.p_posx - 1))
-		data->img.img = data->img.enemy_right;
-	else
-		data->img.img = data->img.enemy_front;
-}
-
 void	check_caracters2(char *line, t_mlx_data *data, int fd)
 {
 	if (data->elem.e != 1)
@@ -63,4 +47,12 @@ void	check_screen_size(t_mlx_data *data, int fd)
 		error_exit("ERROR: BIG WIDTH", NULL, fd, data->map.array);
 	if (data->map.map_y_len > 13)
 		error_exit("ERROR: BIG HEIGHT", NULL, fd, data->map.array);
+}
+
+void	set_zero(t_mlx_data *data)
+{
+	ft_memset(&data->elem, 0, sizeof(data->elem));
+	ft_memset(&data->img, 0, sizeof(data->img));
+	ft_memset(&data->map, 0, sizeof(data->map));
+	ft_memset(&data->path, 0, sizeof(data->path));
 }

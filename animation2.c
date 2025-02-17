@@ -6,136 +6,106 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/16 15:57:36 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 01:22:22 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void    enemy_animation2(t_mlx_data *data, int num)
-{
-    char	*path;
-	char	*number;
-	char	*full_path;
-
-    number = ft_itoa(num);
-	path = ft_strjoin(data->img.side.enemy_path.enemy_right, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-	data->img.enemy_right = mlx_xpm_file_to_image(data->mlx,
-			full_path, &data->img.img_width,
-			&data->img.img_height);
-	free(full_path);
-	number = ft_itoa(num);
-	path = ft_strjoin(data->img.side.enemy_path.enemy_left, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-	data->img.enemy_left = mlx_xpm_file_to_image(data->mlx,
-			full_path, &data->img.img_width,
-			&data->img.img_height);
-	if (data->img.enemy_right == NULL || data->img.enemy_left == NULL)
-		free_destroy(data);
-	free(full_path);
-}
-
-void    enemy_death_animation(t_mlx_data *data, int num, char *link, int side)
-{
-    char	*path;
-	char	*number;
-	char	*full_path;
-
-	number = ft_itoa(num);
-	path = ft_strjoin(link, number);
-	full_path = ft_strjoin(path, ".xpm");
-	free(number);
-	free(path);
-	if (side == 0)
-	{
-		data->img.enemy_back = mlx_xpm_file_to_image(data->mlx,
-					full_path, &data->img.img_width,
-					&data->img.img_height);
-	}
-	if (side == 1)
-	{
-		data->img.enemy_front = mlx_xpm_file_to_image(data->mlx,
-					full_path, &data->img.img_width,
-					&data->img.img_height);
-	}
-	enemy_death_animation2(data, side, full_path);
-	free(full_path);
-}
 
 void	characters_animation(t_mlx_data *data, int i)
 {
+	static	int	d;
+
 	if (data->elem.house_open != 0)
 	{
 		if (data->elem.house_open == 1)
 		{
-			home_animation(data, i, "./images/bonus/home_pic/home_to_open/");
-			data->elem.house_open = 2;
+			data->img.house_open = data->path.home[1][d];
+			if (d == 5)
+				data->elem.house_open = 2;
+			d++;
 		}
 		else
-			home_animation(data, i, "./images/bonus/home_pic/home_open/");
+			data->img.house_open = data->path.home[0][i];
 	}
 	else
-		home_animation(data, i, "./images/bonus/home_pic/home_close/");
+		data->img.house_close = data->path.home[2][i];
 	if (data->img.side.front == 1)
-		stop_animation(data, i, "./images/bonus/stop/stop_front/");
+		stop_animation(data, i, 0, 1);
 	else if (data->img.side.front == 2)
-		stop_animation(data, i, "./images/bonus/stop/stop_back/");
+		stop_animation(data, i, 1, 1);
 	else if (data->img.side.right == 1)
-		stop_animation(data, i, "./images/bonus/stop/stop_right/");
+		stop_animation(data, i, 2, 1);
 	else if (data->img.side.right == 2)
-		stop_animation(data, i, "./images/bonus/stop/stop_left/");
-	data->img.side.enemy_path.enemy_front = "./images/bonus/enemy/enemy_front/";
-	data->img.side.enemy_path.enemy_left = "./images/bonus/enemy/enemy_left/";
-	data->img.side.enemy_path.enemy_back = "./images/bonus/enemy/enemy_back/";
-	data->img.side.enemy_path.enemy_right = "./images/bonus/enemy/enemy_right/";
+		stop_animation(data, i, 3, 1);
 	enemy_animation(data, i);
 }
 
-void	finish(t_mlx_data *data, int k)
+void	enemy_death(t_mlx_data *data, int i)
 {
-	if (k == 0)
+	find_p_pos(data);
+	if (data->img.side.front == 1)
 	{
-		if (data->img.side.win != 1)
-			death(data);
-		else
-			win(data);
-		mlx_clear_window(data->mlx, data->mlx_win);
-		sleep(1);
+		data->elem.m_posx = data->elem.p_posx;
+		data->elem.m_posy = data->elem.p_posy + 1;
+		data->img.enemy_back = data->path.attack[1][i];
 	}
-	win_lose(data);
-	if (k == 12)
-		free_destroy(data);
+	else if (data->img.side.front == 2)
+	{
+		data->elem.m_posx = data->elem.p_posx;
+		data->elem.m_posy = data->elem.p_posy - 1;
+		data->img.enemy_front = data->path.attack[0][i];
+	}
+	else if (data->img.side.right == 1)
+	{
+		data->elem.m_posx = data->elem.p_posx + 1;
+		data->elem.m_posy = data->elem.p_posy;
+		data->img.enemy_left = data->path.attack[3][i];
+	}
+	else if (data->img.side.right == 2)
+	{
+		data->elem.m_posx = data->elem.p_posx - 1;
+		data->elem.m_posy = data->elem.p_posy;
+		data->img.enemy_right = data->path.attack[2][i];
+	}
 }
 
-int	animation(t_mlx_data *data)
+void	death(t_mlx_data *data)
 {
-	static	int	i;
-	static	int	j;
-	static	int	k;
+	int	i;
 
-	if (i > 5)
-		i = 0;
-	if (j > 9)
-		j = 0;
-	if (data->img.side.finish == 1)
+	i = 0;
+	while (i < 9)
 	{
-		finish(data, k);
-		k++;
-	}
-	else
-	{
-		coin_animation(data, j, "./images/bonus/coins/");
-		characters_animation(data, i);
-	}
-	usleep(130000);
-	if (data->img.side.finish != 1)
+		if (data->img.side.front == 1)
+			stop_animation(data, i, 0, 0);
+		else if (data->img.side.front == 2)
+			stop_animation(data, i, 1, 0);
+		else if (data->img.side.right == 1)
+			stop_animation(data, i, 2, 0);
+		else if (data->img.side.right == 2)
+			stop_animation(data, i, 3, 0);
+		enemy_death(data, i);
+		mlx_do_sync(data->mlx);
 		draw_map(data);
-	i++;
-	j++;
-	return (1);
+		usleep(200000);
+		i++;
+	}
+}
+
+void	win(t_mlx_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 10)
+	{
+		data->img.map_player = data->path.map_ground;
+		data->img.house_open = data->path.win[i];
+		mlx_do_sync(data->mlx);
+		draw_map(data);
+		usleep(200000);
+		i++;
+	}
 }
