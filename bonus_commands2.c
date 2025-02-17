@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 01:47:59 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:43:18 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_movements(t_mlx_data *data)
 	mlx_string_put(data->mlx, data->mlx_win, 0, 20, 0x00CED1, "Number of movement :");
 	if (data->elem.num_move != 0)
 	{
-		mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x3D2B1A, number2);
+		mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x6BBA21, number2);
 	}
     mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x00CED1, number);
 	free(number2);

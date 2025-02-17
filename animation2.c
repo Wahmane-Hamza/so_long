@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/17 01:22:22 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 18:38:34 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,25 @@ void	characters_animation(t_mlx_data *data, int i)
 void	enemy_death(t_mlx_data *data, int i)
 {
 	find_p_pos(data);
-	if (data->img.side.front == 1)
+	if (data->map.array[data->elem.p_posy + 1][data->elem.p_posx] == 'M')
 	{
 		data->elem.m_posx = data->elem.p_posx;
 		data->elem.m_posy = data->elem.p_posy + 1;
 		data->img.enemy_back = data->path.attack[1][i];
 	}
-	else if (data->img.side.front == 2)
+	else if (data->map.array[data->elem.p_posy - 1][data->elem.p_posx] == 'M')
 	{
 		data->elem.m_posx = data->elem.p_posx;
 		data->elem.m_posy = data->elem.p_posy - 1;
 		data->img.enemy_front = data->path.attack[0][i];
 	}
-	else if (data->img.side.right == 1)
+	else if (data->map.array[data->elem.p_posy][data->elem.p_posx + 1] == 'M')
 	{
 		data->elem.m_posx = data->elem.p_posx + 1;
 		data->elem.m_posy = data->elem.p_posy;
 		data->img.enemy_left = data->path.attack[3][i];
 	}
-	else if (data->img.side.right == 2)
+	else if (data->map.array[data->elem.p_posy][data->elem.p_posx - 1] == 'M')
 	{
 		data->elem.m_posx = data->elem.p_posx - 1;
 		data->elem.m_posy = data->elem.p_posy;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:22:37 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/12 10:06:12 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:31:24 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,3 +184,77 @@
 // 	else
 // 		error_exit("Bad argement:./so_long map\n", NULL, -1, NULL);
 // }
+
+
+
+
+
+
+
+void move_enemy(t_mlx_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (data->map.array[i])
+	{
+		j = 0;
+		while (data->map.array[i][j])
+		{
+			if ((i == data->elem.p_posy + 2 || i == data->elem.p_posy + 1) 
+				&& j == data->elem.p_posx)
+				data->img.enemy_directions[i][j] = 2;
+			else if ((i == data->elem.p_posy - 2 || i == data->elem.p_posy - 1) 
+				&& j == data->elem.p_posx)
+				data->img.enemy_directions[i][j] = 2;
+			else 
+			{
+				if (data->map.array[i][j] == 'M' && data->map.array[i][j + 1] != '0')
+					data->img.enemy_directions[i][j] = 1;
+				else if (data->img.enemy_directions[i][j] == 1)
+					data->img.enemy_directions[i][j] = 1;
+				else
+					data->img.enemy_directions[i][j] = 0;
+			}
+			if (data->map.array[i][j] == 'M' && data->img.enemy_directions[i][j] != 2)
+			{
+				if (data->img.enemy_directions[i][j] == 0)
+				{
+					if (data->map.array[i][j + 1] == '0')
+					{
+						data->map.array[i][j] = '0';
+						data->map.array[i][j + 1] = 'M';
+						j++;
+					}
+					else if (data->map.array[i][j + 1] == 'P')
+					{
+						data->img.side.finish = 1;
+						break;
+					}
+					else
+						data->img.enemy_directions[i][j] = 1;
+				}
+				else
+				{
+					if (data->map.array[i][j - 1] == '0')
+					{
+						data->map.array[i][j] = '0';
+						data->map.array[i][j - 1] = 'M';
+						data->img.enemy_directions[i][j] = 0;
+						data->img.enemy_directions[i][j - 1] = 1;
+					}
+					else if (data->map.array[i][j + 1] == 'P')
+					{
+						data->img.side.finish = 1;
+						break;
+					}
+					else
+						data->img.enemy_directions[i][j] = 0;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+}

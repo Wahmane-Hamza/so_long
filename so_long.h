@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 18:24:54 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 22:52:27 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			check_line_char(char *line, int fd);
 int				check_t_b_wall(char *line);
 void			check_map_extention(char **av);
 void			find_p_pos(t_mlx_data *data);
+void			check_screen_size(t_mlx_data *data, int fd);
 
 // Mandatory commands
 int				draw_map(t_mlx_data *data);

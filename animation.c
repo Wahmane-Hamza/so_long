@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 01:22:03 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 22:03:29 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	animation(t_mlx_data *data)
 		i = 0;
 	if (j > 8)
 		j = 0;
+	if (i == 5)
+		move_enemy(data);
 	if (data->img.side.finish == 1)
 	{
 		finish(data, k);

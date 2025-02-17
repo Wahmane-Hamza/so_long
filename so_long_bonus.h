@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 01:45:39 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 20:19:49 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_img
 	char		*enemy_back;
 	char		*enemy_right;
 	char		*enemy_left;
+	int			enemy_directions[13][24];
 	s_img_side	side;
 }				t_img;
 
@@ -197,5 +198,8 @@ void    win_lose_link(t_mlx_data *data);
 void	space_link(t_mlx_data *data);
 void	first_link(t_mlx_data *data);
 
+
+
+void move_enemy(t_mlx_data *data);
 
 #endif

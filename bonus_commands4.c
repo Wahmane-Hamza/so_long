@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:46:57 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/16 23:41:00 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/17 22:05:56 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,43 @@ void    enemy_draw(t_mlx_data *data, int i, int j)
 	find_p_pos(data);
 	if ((i == data->elem.p_posy + 2 || i == data->elem.p_posy + 1) 
 		&& j == data->elem.p_posx)
+		{
+			data->img.enemy_directions[i][j] = 3;
 			data->img.img = data->img.enemy_back;
+		}
 	else if (i == data->elem.p_posy 
 		&& (j == data->elem.p_posx + 2 || j == data->elem.p_posx + 1))
+		{
+			data->img.enemy_directions[i][j] = 1;
 			data->img.img = data->img.enemy_left;
+		}
 	else if (i == data->elem.p_posy
 		&& (j == data->elem.p_posx - 2 || j == data->elem.p_posx - 1))
-		data->img.img = data->img.enemy_right;
+		{
+			data->img.enemy_directions[i][j] = 0;
+			data->img.img = data->img.enemy_right;
+		}
+	else if ((i == data->elem.p_posy - 2 || i == data->elem.p_posy - 1) 
+				&& j == data->elem.p_posx)
+		{
+			data->img.enemy_directions[i][j] = 2;
+			data->img.img = data->img.enemy_front;
+		}
 	else
-		data->img.img = data->img.enemy_front;
+	{
+		if (data->map.array[i][j] == 'M' && data->map.array[i][j + 1] != '0')
+			data->img.enemy_directions[i][j] = 1;
+		else if (data->img.enemy_directions[i][j] == 1)
+			data->img.enemy_directions[i][j] = 1;
+		else
+			data->img.enemy_directions[i][j] = 0;
+		if (data->img.enemy_directions[i][j] == 0)
+			data->img.img = data->img.enemy_right;
+		else if (data->img.enemy_directions[i][j] == 1)
+			data->img.img = data->img.enemy_left;
+		else
+			data->img.img = data->img.enemy_front;
+	}
 }
 
 void	change_player(t_mlx_data *data, int num, int x_y)
