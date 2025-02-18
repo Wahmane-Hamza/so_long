@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 11:53:48 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:26:37 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
-# include <X11/keysym.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -137,6 +136,7 @@ void			check_map_extention(char **av);
 void			check_caracters2(char *line, t_mlx_data *data, int fd);
 void			check_screen_size(t_mlx_data *data, int fd);
 void	set_zero(t_mlx_data *data);
+int parsing(char **av, t_mlx_data *data);
 
 // Animation
 void			enemy_animation(t_mlx_data *data, int num);
@@ -211,6 +211,5 @@ void	first_link(t_mlx_data *data);
 
 
 
-void move_enemy(t_mlx_data *data);
 
 #endif

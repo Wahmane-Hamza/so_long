@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 16:53:49 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:38:17 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	key_hook(int keysym, t_mlx_data *data)
 		free_destroy(data);
 	else
 		return (0);
-	mlx_clear_window(data->mlx, data->mlx_win);
+	data->map.render = 0;
 	draw_map(data);
 	find_p_pos(data);
 	return (1);

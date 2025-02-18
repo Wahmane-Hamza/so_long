@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 13:53:42 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:26:32 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ void	set_zero(t_mlx_data *data)
 	ft_memset(&data->map, 0, sizeof(data->map));
 	ft_memset(&data->path, 0, sizeof(data->path));
 	ft_memset(&data, 0, sizeof(data));
+}
+
+int parsing(char **av, t_mlx_data *data)
+{
+	if (check_all(av, data) == 0)
+	return (EXIT_FAILURE);
+	data->map.array = map_to_array(data, av);
+	if (flood_fill_bonus(data) == 0)
+		error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 11:53:20 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:31:30 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ int	draw_map(t_mlx_data *data)
 	data->elem.house_open = 0;
 	if (check_coins(data) == 1)
 		data->elem.house_open = 1;
-	draw_characters(data, i);
+	if (data->map.render == 1)
+		draw_characters(data, i);
+	else
+		draw_player_position(data, i);
 	return (1);
 }
 

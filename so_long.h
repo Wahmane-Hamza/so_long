@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 22:52:27 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:37:02 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct t_map_data
 	char		**array;
 	int			map_x_len;
 	int			map_y_len;
+	int			render;
 }				t_map_data;
 
 typedef struct s_mlx_data
@@ -94,5 +95,6 @@ void			draw_characters(t_mlx_data *data, int i);
 void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
 int				close_window(t_mlx_data *data);
+void			draw_player_position(t_mlx_data *data, int i);
 
 #endif
