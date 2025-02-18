@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 12:16:43 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:55:51 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void    enemy_animation(t_mlx_data *data, int num)
+void	enemy_animation(t_mlx_data *data, int num)
 {
 	data->img.enemy_front = data->path.enemy[0][num];
 	data->img.enemy_back = data->path.enemy[1][num];
-	data->img.enemy_right =  data->path.enemy[2][num];
-	data->img.enemy_left =  data->path.enemy[3][num];
+	data->img.enemy_right = data->path.enemy[2][num];
+	data->img.enemy_left = data->path.enemy[3][num];
 }
 
-void    stop_animation(t_mlx_data *data, int i, int j, int alive)
+void	stop_animation(t_mlx_data *data, int i, int j, int alive)
 {
 	if (alive == 1)
 		data->img.map_player = data->path.player[j][i];
@@ -28,7 +28,7 @@ void    stop_animation(t_mlx_data *data, int i, int j, int alive)
 		data->img.map_player = data->path.death[j][i];
 }
 
-void win_lose(t_mlx_data *data)
+void	win_lose(t_mlx_data *data)
 {
 	int	x_center;
 	int	y_center;
@@ -38,14 +38,15 @@ void win_lose(t_mlx_data *data)
 	else
 		data->img.img = data->path.win_lose[1];
 	if ((data->map.map_x_len * 80) > data->img.img_width_win)
-		x_center = ((data->map.map_x_len * 80) - data->img.img_width_win) / 2 ;
+		x_center = ((data->map.map_x_len * 80) - data->img.img_width_win) / 2;
 	else
-		x_center = 0 ;
+		x_center = 0;
 	if ((data->map.map_y_len * 80) > data->img.img_height_win)
-		y_center = ((data->map.map_y_len * 80) - data->img.img_height_win) / 2 ;
+		y_center = ((data->map.map_y_len * 80) - data->img.img_height_win) / 2;
 	else
 		y_center = 0;
-    mlx_put_image_to_window(data->mlx, data->mlx_win,data->img.img ,x_center, y_center);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
+		x_center, y_center);
 }
 
 void	finish(t_mlx_data *data, int k)
@@ -65,9 +66,9 @@ void	finish(t_mlx_data *data, int k)
 
 int	animation(t_mlx_data *data)
 {
-	static	int	i;
-	static	int	j;
-	static	int	k;
+	static int	i;
+	static int	j;
+	static int	k;
 
 	if (i > 5)
 		i = 0;

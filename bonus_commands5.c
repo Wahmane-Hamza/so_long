@@ -77,38 +77,38 @@ void	destroy_path3(t_mlx_data *data)
 	}
 }
 
-void    path(t_mlx_data *data)
+void	path(t_mlx_data *data)
 {
-    enemy_link_array(data, 0, "./images/bonus/enemy/enemy_front/");
-    enemy_link_array(data, 1, "./images/bonus/enemy/enemy_back/");
-    enemy_link_array(data, 2, "./images/bonus/enemy/enemy_right/");
-    enemy_link_array(data, 3, "./images/bonus/enemy/enemy_left/");
-    player_link_array(data, 0, "./images/bonus/stop/stop_front/");
-    player_link_array(data, 1, "./images/bonus/stop/stop_back/");
-    player_link_array(data, 2, "./images/bonus/stop/stop_right/");
-    player_link_array(data, 3, "./images/bonus/stop/stop_left/");
-    attack_link_array(data, 0, "./images/bonus/attack/attack_front/");
-    attack_link_array(data, 1, "./images/bonus/attack/attack_back/");
-    attack_link_array(data, 2, "./images/bonus/attack/attack_right/");
-    attack_link_array(data, 3, "./images/bonus/attack/attack_left/");
-    death_link_array(data, 0, "./images/bonus/death/death_front/");
-    death_link_array(data, 1, "./images/bonus/death/death_back/");
-    death_link_array(data, 2, "./images/bonus/death/death_right/");
-    death_link_array(data, 3, "./images/bonus/death/death-left/");
-    home_link_array(data, 0, "./images/bonus/home_pic/home_open/");
-    home_link_array(data, 1, "./images/bonus/home_pic/home_to_open/");
-    home_link_array(data, 2, "./images/bonus/home_pic/home_close/");
-    coin_link_array(data, "./images/bonus/coins/");
-    win_link_array(data, "./images/bonus/win_pic/");
-    win_lose_link(data);
-    space_link(data);
-    first_link(data);
+	enemy_link_array(data, 0, "./images/bonus/enemy/enemy_front/");
+	enemy_link_array(data, 1, "./images/bonus/enemy/enemy_back/");
+	enemy_link_array(data, 2, "./images/bonus/enemy/enemy_right/");
+	enemy_link_array(data, 3, "./images/bonus/enemy/enemy_left/");
+	player_link_array(data, 0, "./images/bonus/stop/stop_front/");
+	player_link_array(data, 1, "./images/bonus/stop/stop_back/");
+	player_link_array(data, 2, "./images/bonus/stop/stop_right/");
+	player_link_array(data, 3, "./images/bonus/stop/stop_left/");
+	attack_link_array(data, 0, "./images/bonus/attack/attack_front/");
+	attack_link_array(data, 1, "./images/bonus/attack/attack_back/");
+	attack_link_array(data, 2, "./images/bonus/attack/attack_right/");
+	attack_link_array(data, 3, "./images/bonus/attack/attack_left/");
+	death_link_array(data, 0, "./images/bonus/death/death_front/");
+	death_link_array(data, 1, "./images/bonus/death/death_back/");
+	death_link_array(data, 2, "./images/bonus/death/death_right/");
+	death_link_array(data, 3, "./images/bonus/death/death-left/");
+	home_link_array(data, 0, "./images/bonus/home_pic/home_open/");
+	home_link_array(data, 1, "./images/bonus/home_pic/home_to_open/");
+	home_link_array(data, 2, "./images/bonus/home_pic/home_close/");
+	coin_link_array(data, "./images/bonus/coins/");
+	win_link_array(data, "./images/bonus/win_pic/");
+	win_lose_link(data);
+	space_link(data);
+	first_link(data);
 }
 
-void move_enemy(t_mlx_data *data)
+void	move_enemy(t_mlx_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	k;
 
 	data->img.side.x = -1;

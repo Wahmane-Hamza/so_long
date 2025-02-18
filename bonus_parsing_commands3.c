@@ -52,10 +52,10 @@ void	set_zero(t_mlx_data *data)
 	ft_memset(&data, 0, sizeof(data));
 }
 
-int parsing(char **av, t_mlx_data *data)
+int	parsing(char **av, t_mlx_data *data)
 {
 	if (check_all(av, data) == 0)
-	return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	data->map.array = map_to_array(data, av);
 	if (flood_fill_bonus(data) == 0)
 		error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);

@@ -12,10 +12,9 @@
 
 #include "so_long_bonus.h"
 
-
 void	characters_animation(t_mlx_data *data, int i, int j)
 {
-	static	int	d;
+	static int	d;
 
 	data->img.map_coin = data->path.coin[j];
 	if (data->elem.house_open != 0)

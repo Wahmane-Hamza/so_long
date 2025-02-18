@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandatory_commands.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 15:31:30 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:59:40 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	draw_characters(t_mlx_data *data, int i)
 				data->img.img = data->img.map_player;
 			else
 				data->img.img = data->img.map_ground;
-			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-				j * data->img.img_width, i * data->img.img_height);
+			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, j
+				* data->img.img_width, i * data->img.img_height);
 			j++;
 		}
 		i++;

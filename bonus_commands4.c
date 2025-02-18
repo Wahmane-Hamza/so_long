@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_commands4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:46:57 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/18 15:40:21 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:57:23 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	put_image(t_mlx_data *data, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-		x * data->img.img_width, y * data->img.img_height);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, x
+		* data->img.img_width, y * data->img.img_height);
 }
 
 void	draw_characters(t_mlx_data *data, int i)
@@ -39,35 +39,35 @@ void	draw_characters(t_mlx_data *data, int i)
 				enemy_draw(data, i, j);
 			else
 				data->img.img = data->path.map_ground;
-			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-				j * data->img.img_width, i * data->img.img_height);
+			mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, j
+				* data->img.img_width, i * data->img.img_height);
 			j++;
 		}
 		i++;
 	}
 }
 
-void    enemy_draw(t_mlx_data *data, int i, int j)
+void	enemy_draw(t_mlx_data *data, int i, int j)
 {
 	find_p_pos(data);
-	if ((i == data->elem.p_posy + 2 || i == data->elem.p_posy + 1) 
+	if ((i == data->elem.p_posy + 2 || i == data->elem.p_posy + 1)
 		&& j == data->elem.p_posx)
-		{
-			data->img.enemy_directions[i][j] = 3;
-			data->img.img = data->img.enemy_back;
-		}
-	else if ((i == data->elem.p_posy - 2 || i == data->elem.p_posy - 1) 
-				&& j == data->elem.p_posx)
-		{
-			data->img.enemy_directions[i][j] = 2;
-			data->img.img = data->img.enemy_front;
-		}
-	else if (i == data->elem.p_posy
-		&& (j == data->elem.p_posx - 2 || j == data->elem.p_posx - 1))
-		{
-			data->img.enemy_directions[i][j] = 0;
-			data->img.img = data->img.enemy_right;
-		}
+	{
+		data->img.enemy_directions[i][j] = 3;
+		data->img.img = data->img.enemy_back;
+	}
+	else if ((i == data->elem.p_posy - 2 || i == data->elem.p_posy - 1)
+		&& j == data->elem.p_posx)
+	{
+		data->img.enemy_directions[i][j] = 2;
+		data->img.img = data->img.enemy_front;
+	}
+	else if (i == data->elem.p_posy && (j == data->elem.p_posx - 2
+			|| j == data->elem.p_posx - 1))
+	{
+		data->img.enemy_directions[i][j] = 0;
+		data->img.img = data->img.enemy_right;
+	}
 	else
 		enemy_draw2(data, i, j);
 }
@@ -90,8 +90,8 @@ void	change_player(t_mlx_data *data, int num, int x_y)
 
 void	enemy_draw2(t_mlx_data *data, int i, int j)
 {
-	if (i == data->elem.p_posy 
-		&& (j == data->elem.p_posx + 2 || j == data->elem.p_posx + 1))
+	if (i == data->elem.p_posy && (j == data->elem.p_posx + 2
+			|| j == data->elem.p_posx + 1))
 	{
 		data->img.enemy_directions[i][j] = 1;
 		data->img.img = data->img.enemy_left;

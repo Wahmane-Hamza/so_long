@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 11:52:43 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:57:38 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	draw_ground_player(t_mlx_data *data)
 	y = data->elem.p_posy;
 	m_x = data->elem.m_posx;
 	m_y = data->elem.m_posy;
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.map_player,
-		x * data->img.img_width, y * data->img.img_height);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.map_player, x
+		* data->img.img_width, y * data->img.img_height);
 	data->img.img = data->path.map_ground;
 	if (data->img.side.finish == 1 && data->img.side.win != 1)
 	{
 		enemy_draw(data, m_y, m_x);
-		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-		m_x * data->img.img_width, m_y * data->img.img_height);
+		mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, m_x
+			* data->img.img_width, m_y * data->img.img_height);
 	}
 	else
 		draw_ground(data, y, x);

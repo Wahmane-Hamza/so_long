@@ -111,5 +111,5 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	exit (0);
+	exit(0);
 }

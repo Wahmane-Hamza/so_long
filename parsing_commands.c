@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_commands.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 13:38:32 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 15:29:37 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:02:13 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,7 @@ int	check_all(char **av, t_mlx_data *data)
 	char	*line;
 	int		len;
 
-	data->elem.p = 0;
-	data->elem.e = 0;
-	data->elem.c = 0;
+	set_zero(data);
 	data->map.render = 1;
 	check_map_extention(av);
 	fd = open(av[1], O_RDONLY);

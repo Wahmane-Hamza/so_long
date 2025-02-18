@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandatory_commands3.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:32:18 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/18 15:41:13 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:38 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	put_image(t_mlx_data *data, int x, int y)
 {
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img,
-		x * data->img.img_width, y * data->img.img_height);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img, x
+		* data->img.img_width, y * data->img.img_height);
 }
 
 void	draw_ground(t_mlx_data *data, int y, int x)
@@ -38,9 +38,8 @@ void	draw_ground_player(t_mlx_data *data)
 	find_p_pos(data);
 	x = data->elem.p_posx;
 	y = data->elem.p_posy;
-
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.map_player,
-		x * data->img.img_width, y * data->img.img_height);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.map_player, x
+		* data->img.img_width, y * data->img.img_height);
 	data->img.img = data->img.map_ground;
 	draw_ground(data, y, x);
 }
@@ -69,4 +68,12 @@ void	draw_player_position(t_mlx_data *data, int i)
 		i++;
 	}
 	draw_ground_player(data);
+}
+
+void	set_zero(t_mlx_data *data)
+{
+	ft_memset(&data->elem, 0, sizeof(data->elem));
+	ft_memset(&data->img, 0, sizeof(data->img));
+	ft_memset(&data->map, 0, sizeof(data->map));
+	ft_memset(&data, 0, sizeof(data));
 }

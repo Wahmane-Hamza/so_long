@@ -12,8 +12,7 @@
 
 #include "so_long_bonus.h"
 
-
-int enemy_right(t_mlx_data *data, int i, int j)
+int	enemy_right(t_mlx_data *data, int i, int j)
 {
 	if (data->map.array[i][j + 1] == '0')
 	{
@@ -33,7 +32,6 @@ int enemy_right(t_mlx_data *data, int i, int j)
 
 int	enemy_bottom(t_mlx_data *data, int i, int j)
 {
-
 	if (i != data->img.side.y && j != data->img.side.x)
 	{
 		if (data->map.array[i + 1][j] == '0')
@@ -57,7 +55,6 @@ int	enemy_bottom(t_mlx_data *data, int i, int j)
 
 int	enemy_top_bottom(t_mlx_data *data, int i, int j)
 {
-
 	if (data->img.enemy_directions[i][j] == 2)
 		return (enemy_bottom(data, i, j));
 	else if (data->img.enemy_directions[i][j] == 3)
@@ -72,7 +69,7 @@ int	enemy_top_bottom(t_mlx_data *data, int i, int j)
 		else if (data->map.array[i - 1][j] == 'P')
 		{
 			data->img.side.finish = 1;
-			return 0;
+			return (0);
 		}
 		else
 			data->img.enemy_directions[i][j] = 2;
@@ -104,22 +101,24 @@ int	enemy_left_right(t_mlx_data *data, int i, int j)
 	return (j);
 }
 
-void move_enemy2(t_mlx_data *data, int i, int j, int k)
+void	move_enemy2(t_mlx_data *data, int i, int j, int k)
 {
 	while (data->map.array[i][j])
 	{
-		if (data->map.array[i][j] == 'M' && data->img.enemy_directions[i][j] < 2)
+		if (data->map.array[i][j] == 'M'
+			&& data->img.enemy_directions[i][j] < 2)
 		{
 			k = enemy_left_right(data, i, j);
 			if (k == 0)
-				break;
-			j = k; 	
+				break ;
+			j = k;
 		}
-		if (data->map.array[i][j] == 'M' && data->img.enemy_directions[i][j] >= 2)
+		if (data->map.array[i][j] == 'M'
+			&& data->img.enemy_directions[i][j] >= 2)
 		{
 			k = enemy_top_bottom(data, i, j);
 			if (k == 0)
-				break;
+				break ;
 			else if (k == -1)
 			{
 				data->img.side.x = j;
