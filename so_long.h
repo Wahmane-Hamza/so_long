@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 15:37:02 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:50:40 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
-# include "./minilibx-linux/mlx.h"
-# include <X11/keysym.h>
+# include <mlx.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
