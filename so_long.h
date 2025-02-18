@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 16:03:59 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:15:23 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void			image_link(t_mlx_data *data);
 void			free_destroy(t_mlx_data *data);
 int				close_window(t_mlx_data *data);
 void			draw_player_position(t_mlx_data *data, int i);
+void			image_link2(t_mlx_data *data);
 
 #endif

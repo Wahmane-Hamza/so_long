@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_commands3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 12:15:41 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:16:33 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,32 @@ void	check_screen_size(t_mlx_data *data, int fd)
 		error_exit("ERROR: BIG WIDTH", NULL, fd, data->map.array);
 	if (data->map.map_y_len > 13)
 		error_exit("ERROR: BIG HEIGHT", NULL, fd, data->map.array);
+}
+
+void	image_link2(t_mlx_data *data)
+{
+	data->img.house_close = mlx_xpm_file_to_image(data->mlx,
+			"./images/mandatory/house_close.xpm",
+			&data->img.img_width,
+			&data->img.img_height);
+	if (!data->img.house_close)
+		free_destroy(data);
+	data->img.house_open = mlx_xpm_file_to_image(data->mlx,
+			"./images/mandatory/house_open.xpm",
+			&data->img.img_width,
+			&data->img.img_height);
+	if (!data->img.house_open)
+		free_destroy(data);
+	data->img.map_wall = mlx_xpm_file_to_image(data->mlx,
+			"./images/mandatory/wall.xpm",
+			&data->img.img_width,
+			&data->img.img_height);
+	if (!data->img.map_wall)
+		free_destroy(data);
+	data->img.map_coin = mlx_xpm_file_to_image(data->mlx,
+			"./images/mandatory/coin.xpm",
+			&data->img.img_width,
+			&data->img.img_height);
+	if (!data->img.map_coin)
+		free_destroy(data);
 }

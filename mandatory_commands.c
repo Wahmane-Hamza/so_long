@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:28:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 15:59:40 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:14:10 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,15 @@ void	image_link(t_mlx_data *data)
 			"./images/mandatory/ground.xpm",
 			&data->img.img_width,
 			&data->img.img_height);
+	if (!data->img.map_ground)
+		free_destroy(data);
 	data->img.map_player = mlx_xpm_file_to_image(data->mlx,
 			"./images/mandatory/player.xpm",
 			&data->img.img_width,
 			&data->img.img_height);
-	data->img.house_close = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/house_close.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.house_open = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/house_open.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.map_wall = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/wall.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
-	data->img.map_coin = mlx_xpm_file_to_image(data->mlx,
-			"./images/mandatory/coin.xpm",
-			&data->img.img_width,
-			&data->img.img_height);
+	if (!data->img.map_player)
+		free_destroy(data);
+	image_link2(data);
 }
 
 void	draw_characters(t_mlx_data *data, int i)
