@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/18 12:39:38 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 13:53:42 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,5 @@ void	set_zero(t_mlx_data *data)
 	ft_memset(&data->img, 0, sizeof(data->img));
 	ft_memset(&data->map, 0, sizeof(data->map));
 	ft_memset(&data->path, 0, sizeof(data->path));
-
-	data->mlx = NULL; 
-	data->mlx_win = NULL; 
+	ft_memset(&data, 0, sizeof(data));
 }
