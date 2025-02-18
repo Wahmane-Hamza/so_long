@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:56:41 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 22:03:29 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:16:43 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ void	finish(t_mlx_data *data, int k)
 		else
 			win(data);
 		mlx_clear_window(data->mlx, data->mlx_win);
-		sleep(1);
 	}
 	win_lose(data);
 	if (k == 12)
-		free_destroy(data);
+		free_destroy(data, 0);
 }
 
 int	animation(t_mlx_data *data)
@@ -82,10 +81,7 @@ int	animation(t_mlx_data *data)
 		k++;
 	}
 	else
-	{
-		data->img.map_coin = data->path.coin[j];
-		characters_animation(data, i);
-	}
+		characters_animation(data, i, j);
 	usleep(130000);
 	if (data->img.side.finish != 1)
 		draw_map(data);

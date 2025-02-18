@@ -10,7 +10,7 @@ SRCSB = so_long_bonus.c ./get_next_line/get_next_line.c ./get_next_line/get_next
 		flood_fill_bonus.c bonus_parsing_commands2.c \
 		bonus_parsing_commands3.c \
 		bonus_commands.c bonus_commands2.c bonus_commands3.c bonus_commands4.c bonus_commands5.c \
-		animation.c animation2.c paths.c paths2.c
+		bonus_commands6.c animation.c animation2.c paths.c paths2.c
 
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)

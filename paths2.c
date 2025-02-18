@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:26:40 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/17 01:29:41 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:58:33 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void    coin_link_array(t_mlx_data *data, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.coin[i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -55,6 +57,8 @@ void    win_link_array(t_mlx_data *data, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.win[i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -69,10 +73,14 @@ void    win_lose_link(t_mlx_data *data)
         "./images/bonus/win_lose/win.xpm",
         &data->img.img_width_win,
         &data->img.img_height_win);
+    if (!data->path.win_lose[0])
+            free_destroy(data, 1);
     data->path.win_lose[1] = mlx_xpm_file_to_image(data->mlx,
         "./images/bonus/win_lose/game_over.xpm",
         &data->img.img_width_lose,
         &data->img.img_height_lose);
+    if (!data->path.win_lose[1])
+            free_destroy(data, 1);
 }
 
 void	space_link(t_mlx_data *data)
@@ -81,10 +89,14 @@ void	space_link(t_mlx_data *data)
 			"./images/mandatory/ground.xpm",
 			&data->img.img_width,
 			&data->img.img_height);
+    if (!data->path.map_ground)
+            free_destroy(data, 1);
 	data->path.map_wall = mlx_xpm_file_to_image(data->mlx,
 			"./images/mandatory/wall.xpm",
 			&data->img.img_width,
 			&data->img.img_height);
+    if (!data->path.map_wall)
+        free_destroy(data, 1);
 }
 
 void    first_link(t_mlx_data *data)

@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 15:36:03 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/17 01:26:03 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:44:44 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	destroy_path2(t_mlx_data *data)
 	j = 0;
 	while (i < 4)
 	{
+		j = 0;
 		while (j < 6)
 		{
 			if (data->path.enemy[i][j])
@@ -52,7 +53,7 @@ void	destroy_path2(t_mlx_data *data)
 			if (i < 3)
 				if (data->path.home[i][j])
 					mlx_destroy_image(data->mlx, data->path.home[i][j]);
-		j++;
+			j++;
 		}
 		i++;
 	}
@@ -102,4 +103,22 @@ void    path(t_mlx_data *data)
     win_lose_link(data);
     space_link(data);
     first_link(data);
+}
+
+void move_enemy(t_mlx_data *data)
+{
+	int i;
+	int j;
+	int	k;
+
+	data->img.side.x = -1;
+	data->img.side.y = -1;
+	i = 0;
+	k = 0;
+	while (data->map.array[i])
+	{
+		j = 0;
+		move_enemy2(data, i, j, k);
+		i++;
+	}
 }

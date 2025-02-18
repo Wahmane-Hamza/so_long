@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/16 19:50:26 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:53:34 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,19 @@ int	main(int ac, char **av)
 		if (flood_fill_bonus(&data) == 0)
 			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
 		data.mlx = mlx_init();
+		if (!data.mlx)
+			return (EXIT_FAILURE);
 		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80,
 				data.map.map_y_len * 80, "so_long");
+		if (!data.mlx_win)
+			return (EXIT_FAILURE);
 		path(&data);
 		draw_map(&data);
-		data.img.side.front = 1;
 		mlx_loop_hook(data.mlx, animation, &data);
 		mlx_key_hook(data.mlx_win, key_hook, &data);
 		mlx_hook(data.mlx_win, 17, 0, close_window, &data);
 		mlx_loop(data.mlx);
-		free_destroy(&data);
+		free_destroy(&data, 0);
 	}
 	else
 		error_exit("Bad argement:./so_long map\n", NULL, -1, NULL);

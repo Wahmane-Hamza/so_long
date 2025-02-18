@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 18:14:21 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/17 01:26:37 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:56:51 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void    enemy_link_array(t_mlx_data *data, int j, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.enemy[j][i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -53,6 +55,8 @@ void    player_link_array(t_mlx_data *data, int j, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.player[j][i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -77,6 +81,8 @@ void    attack_link_array(t_mlx_data *data, int j, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.attack[j][i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -101,6 +107,8 @@ void    death_link_array(t_mlx_data *data, int j, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.death[j][i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);
@@ -125,6 +133,8 @@ void    home_link_array(t_mlx_data *data, int j, char *link)
 			full_path,
 			&data->img.img_width,
 			&data->img.img_height);
+        if (!data->path.home[j][i])
+            free_destroy(data, 1);
         free(number);
         free(path);
         free(full_path);

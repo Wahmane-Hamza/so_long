@@ -6,17 +6,18 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:21:20 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/17 18:38:34 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:18:34 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
 
-void	characters_animation(t_mlx_data *data, int i)
+void	characters_animation(t_mlx_data *data, int i, int j)
 {
 	static	int	d;
 
+	data->img.map_coin = data->path.coin[j];
 	if (data->elem.house_open != 0)
 	{
 		if (data->elem.house_open == 1)
@@ -31,14 +32,7 @@ void	characters_animation(t_mlx_data *data, int i)
 	}
 	else
 		data->img.house_close = data->path.home[2][i];
-	if (data->img.side.front == 1)
-		stop_animation(data, i, 0, 1);
-	else if (data->img.side.front == 2)
-		stop_animation(data, i, 1, 1);
-	else if (data->img.side.right == 1)
-		stop_animation(data, i, 2, 1);
-	else if (data->img.side.right == 2)
-		stop_animation(data, i, 3, 1);
+	player_animation(data, i);
 	enemy_animation(data, i);
 }
 
@@ -89,7 +83,7 @@ void	death(t_mlx_data *data)
 		enemy_death(data, i);
 		mlx_do_sync(data->mlx);
 		draw_map(data);
-		usleep(200000);
+		usleep(120000);
 		i++;
 	}
 }
@@ -108,4 +102,18 @@ void	win(t_mlx_data *data)
 		usleep(200000);
 		i++;
 	}
+}
+
+void	player_animation(t_mlx_data *data, int i)
+{
+	if (data->img.side.front == 1)
+		stop_animation(data, i, 0, 1);
+	else if (data->img.side.front == 2)
+		stop_animation(data, i, 1, 1);
+	else if (data->img.side.right == 1)
+		stop_animation(data, i, 2, 1);
+	else if (data->img.side.right == 2)
+		stop_animation(data, i, 3, 1);
+	else
+		stop_animation(data, i, 0, 1);
 }

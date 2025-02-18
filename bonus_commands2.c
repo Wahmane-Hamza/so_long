@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:31:57 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 15:43:18 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 12:28:24 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@ void	print_movements(t_mlx_data *data)
 	mlx_set_font(data->mlx, data->mlx_win, "9x15");
 	number2 = ft_itoa(data->elem.num_move - 1);
 	number = ft_itoa(data->elem.num_move);
-	mlx_string_put(data->mlx, data->mlx_win, 0, 20, 0x00CED1, "Number of movement :");
+	mlx_string_put(data->mlx, data->mlx_win, 0, 21, 0x000000, "Number of movement :");
+	mlx_string_put(data->mlx, data->mlx_win, 1, 20, 0x000000, "Number of movement :");
+	mlx_string_put(data->mlx, data->mlx_win, 0, 20, 0x000000, "Number of movement :");
 	if (data->elem.num_move != 0)
 	{
 		mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x6BBA21, number2);
+		mlx_string_put(data->mlx, data->mlx_win, 185, 21, 0x6BBA21, number2);
+		mlx_string_put(data->mlx, data->mlx_win, 186, 20, 0x6BBA21, number2);
 	}
-    mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x00CED1, number);
+    mlx_string_put(data->mlx, data->mlx_win, 186, 20, 0x000000, number);
+    mlx_string_put(data->mlx, data->mlx_win, 185, 21, 0x000000, number);
+    mlx_string_put(data->mlx, data->mlx_win, 185, 20, 0x000000, number);
 	free(number2);
 	free(number);
 }
@@ -91,7 +97,7 @@ int	key_hook(int keysym, t_mlx_data *data)
 	else if ((keysym == KEY_A || keysym == KEY_LEFT) && data->img.side.finish != 1)
 		player_side(data, 0, 2, 3);
 	else if ((keysym == ESC || keysym == ON_DESTROY) && data->img.side.finish != 1)
-		free_destroy(data);
+		free_destroy(data, 0);
 	else
 		return (0);
 	data->map.render = 0;
@@ -101,29 +107,11 @@ int	key_hook(int keysym, t_mlx_data *data)
 	return (1);
 }
 
-void	free_destroy(t_mlx_data *data)
+void	free_destroy(t_mlx_data *data, int num_exit)
 {
 	destroy_path(data);
 	destroy_path2(data);
 	destroy_path3(data);
-	
-	// if (data->img.enemy_back)
-	// 	mlx_destroy_image(data->mlx, data->img.enemy_back);
-	// if (data->img.enemy_front)
-	// 	mlx_destroy_image(data->mlx, data->img.enemy_front);
-	// if (data->img.enemy_left)
-	// 	mlx_destroy_image(data->mlx, data->img.enemy_left);
-	// if (data->img.enemy_right)
-	// 	mlx_destroy_image(data->mlx, data->img.enemy_right);
-	// if (data->img.house_close)
-	// 	mlx_destroy_image(data->mlx, data->img.house_close);
-	// if (data->img.house_open)
-	// 	mlx_destroy_image(data->mlx, data->img.house_open);
-	// if (data->img.map_coin)
-	// 	mlx_destroy_image(data->mlx, data->img.map_coin);
-	// if (data->img.map_player)
-	// 	mlx_destroy_image(data->mlx, data->img.map_player);
-		
 	if (data->path.map_ground)
 		mlx_destroy_image(data->mlx, data->path.map_ground);
 	if (data->path.map_wall)
@@ -137,5 +125,5 @@ void	free_destroy(t_mlx_data *data)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	exit (0);
+	exit (num_exit);
 }

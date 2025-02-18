@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:28:54 by wahmane           #+#    #+#             */
-/*   Updated: 2025/02/16 23:50:29 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:53:12 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,30 @@ void	home_open(t_mlx_data *data)
 
 int	close_window(t_mlx_data *data)
 {
-	free_destroy(data);
+	free_destroy(data, 0);
 	return (0);
+}
+
+void	enemy_ground(t_mlx_data *data, int i, int j)
+{
+	if (data->map.array[i][j + 1] == '0')
+	{
+		data->img.img = data->path.map_ground;
+		put_image(data, j + 1, i);
+	}
+	if (data->map.array[i][j - 1] == '0')
+	{
+		data->img.img = data->path.map_ground;
+		put_image(data, j - 1, i);
+	}
+	if (data->map.array[i + 1][j] == '0')
+	{
+		data->img.img = data->path.map_ground;
+		put_image(data, j, i + 1);
+	}
+	if (data->map.array[i - 1][j] == '0')
+	{
+		data->img.img = data->path.map_ground;
+		put_image(data, j, i - 1);
+	}
 }

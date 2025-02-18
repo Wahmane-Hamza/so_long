@@ -6,7 +6,7 @@
 /*   By: wahmane <wahmane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:23:03 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/17 20:19:49 by wahmane          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:53:48 by wahmane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef	struct s_img_sides
 	int	right;
 	int enemy_front;
 	int enemy_right;
+	int	x;
+	int	y;
 	int	finish;
 	int	win;
 }				s_img_side;
@@ -144,12 +146,11 @@ void			finish(t_mlx_data *data, int k);
 int				animation(t_mlx_data *data);
 
 // animation2
-void			characters_animation(t_mlx_data *data, int i);
+void			characters_animation(t_mlx_data *data, int i, int j);
 void			enemy_death(t_mlx_data *data, int i);
 void			death(t_mlx_data *data);
 void			win(t_mlx_data *data);
-
-// animation 3
+void			player_animation(t_mlx_data *data, int i);
 
 // bonus_commands
 int				check_coins(t_mlx_data *data);
@@ -164,25 +165,35 @@ void			print_movements(t_mlx_data *data);
 void			open_door(t_mlx_data *data, int num, char x_y);
 void			move_player(t_mlx_data *data, char x_y, int num);
 int				key_hook(int keysym, t_mlx_data *data);
-void			free_destroy(t_mlx_data *data);
+void			free_destroy(t_mlx_data *data, int num_exit);
 
 // bonus_commands3
 void			player_side(t_mlx_data*data, int front, int right, int move);
 void			enemy_destroy(t_mlx_data *data);
 void			home_open(t_mlx_data *data);
 int				close_window(t_mlx_data *data);
+void			enemy_ground(t_mlx_data *data, int i, int j);
 
 // bonus_commands4
 void			put_image(t_mlx_data *data, int x, int y);
 void			draw_characters(t_mlx_data *data, int i);
 void			enemy_draw(t_mlx_data *data, int i, int j);
 void			change_player(t_mlx_data *data, int num, int x_y);
+void			enemy_draw2(t_mlx_data *data, int i, int j);
 
 // bonus_commands5
 void	destroy_path(t_mlx_data *data);
 void	destroy_path2(t_mlx_data *data);
 void	destroy_path3(t_mlx_data *data);
 void    path(t_mlx_data *data);
+void move_enemy(t_mlx_data *data);
+
+// bonus_commands6
+int enemy_right(t_mlx_data *data, int i, int j);
+int	enemy_bottom(t_mlx_data *data, int i, int j);
+int	enemy_top_bottom(t_mlx_data *data, int i, int j);
+int	enemy_left_right(t_mlx_data *data, int i, int j);
+void move_enemy2(t_mlx_data *data, int i, int j, int k);
 
 // paths
 void    enemy_link_array(t_mlx_data *data, int j, char *link);
