@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:44:52 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/13 14:30:15 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:34:39 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 			return (0);
 		data.map.array = map_to_array(&data, av);
 		if (flood_fill(&data) == 0)
-			error_exit("Error: The wall blocks the player.\n", NULL, -1, NULL);
+			error_exit("Error\nThe wall blocks the player.\n", NULL, -1, NULL);
 		data.mlx = mlx_init();
 		data.mlx_win = mlx_new_window(data.mlx, data.map.map_x_len * 80,
 				data.map.map_y_len * 80, "so_long");
