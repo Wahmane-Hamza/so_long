@@ -6,7 +6,7 @@
 /*   By: hwahmane <hwahmane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:52:02 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/02/24 12:34:59 by hwahmane         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:41:14 by hwahmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	check_map_extention(char **av)
 
 void	check_screen_size(t_mlx_data *data, int fd)
 {
-	if (data->map.map_x_len > 24)
+	if (data->map.map_x_len > 48)
 		error_exit("Error\nBIG WIDTH", NULL, fd, data->map.array);
-	if (data->map.map_y_len > 13)
+	if (data->map.map_y_len > 26)
 		error_exit("Error\nBIG HEIGHT", NULL, fd, data->map.array);
 }
 
